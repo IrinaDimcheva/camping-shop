@@ -33,6 +33,7 @@ ul i {
 }
 
 a:active,
-a:hover {
+a:hover,
+a.active {
   color: var(--clr-green);
 }

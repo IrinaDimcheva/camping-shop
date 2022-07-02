@@ -16,13 +16,13 @@ html {
 :root {
   --clr-dark: #283739;
   --clr-medium: #2c5d63;
-  /* --clr-green: #a2c11c; */
+  --clr-green: #a2c11c;
   /* --clr-green: #a4ca04; */
-  --clr-green: #86a703;
-  /* --clr-lightgrey: #e0e0e0; */
+  --clr-green-hover: #86a703;
+  --clr-lightgrey: #e0e0e0;
   /* --clr-lightgrey: #e5e5e5; */
   /* --clr-lightgrey: #e9e9e9; */
-  --clr-lightgrey: #efefef;
+  /* --clr-lightgrey: #efefef; */
 }
 
 /* body {
@@ -42,6 +42,7 @@ code {
 html {
   font: 18px/1.5 'PT Sans', sans-serif;
   color: var(--clr-dark);
+  background-color: #eee;
 }
 
 body, form, input, textarea, option, select, button, a {
@@ -63,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 0.5em;
   /* padding-top: 1.5rem; */
   /* font-weight: normal; */
-  color: var(--clr-black);
+  color: var(--clr-dark);
 }
 
 h1 { font-size: 3.6em; }
@@ -81,15 +82,21 @@ a {
   cursor: pointer;
   margin-bottom: 1em;
   padding: 0.5em 1.5em;
-  background-color: var(--clr-green);
-  border: 2px solid var(--clr-green);
+  /* background-color: var(--clr-green);
+  border: 2px solid var(--clr-green); */
+  background-color: #fff;
+  color: var(--clr-green);
   border-radius: 0.2em;
+  border: 2px solid var(--clr-green);
 }
 
 .button:hover {
-  background-color: #fff;
+  background-color: var(--clr-green);
+  border: 2px solid var(--clr-green);
+  color: #fff;
+  /* background-color: #fff;
+  color: var(--clr-green); */
   /* border: 2px solid #fff; */
-  color: var(--clr-green);
 }
 
 .centered {

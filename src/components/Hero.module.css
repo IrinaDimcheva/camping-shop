@@ -18,7 +18,6 @@
   background: rgba(0,0,0,0.1);
   position: absolute;
   top: 0; right: 0; left: 0; bottom: 0;
-  /* z-index: ; */
 }
 
 .content {
@@ -37,3 +36,7 @@
   position: relative;
 }
 
+h1 {
+  text-shadow: 0 0.05em 0 #000;
+  color: #fff;
+}
