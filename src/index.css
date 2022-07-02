@@ -1,4 +1,31 @@
-body {
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+@import url('https://use.fontawesome.com/releases/v6.1.1/css/all.css');
+
+:root {
+  --clr-dark: #283739;
+  --clr-medium: #2c5d63;
+  /* --clr-green: #a2c11c; */
+  /* --clr-green: #a4ca04; */
+  --clr-green: #86a703;
+  /* --clr-lightgrey: #e0e0e0; */
+  /* --clr-lightgrey: #e5e5e5; */
+  /* --clr-lightgrey: #e9e9e9; */
+  --clr-lightgrey: #efefef;
+}
+
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +37,61 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+html {
+  font: 18px/1.5 'PT Sans', sans-serif;
+  color: var(--clr-dark);
+}
+
+body, form, input, textarea, option, select, button, a {
+  font: inherit;
+  background-color: inherit;
+  color: inherit;
+}
+
+p, ul, ol {
+  padding-bottom: 1.5em;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.5em;
+  padding-bottom: 0.5em;
+  /* padding-top: 1.5rem; */
+  /* font-weight: normal; */
+  color: var(--clr-black);
+}
+
+h1 { font-size: 3.6em; }
+h2 { font-size: 2.0em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1.4em; }
+h5 { font-size: 1.2em; }
+h6 { font-size: 1.0em; }
+
+a {
+  text-decoration: none;
+}
+
+.button {
+  cursor: pointer;
+  margin-bottom: 1em;
+  padding: 0.5em 1.5em;
+  background-color: var(--clr-green);
+  border: 2px solid var(--clr-green);
+  border-radius: 0.2em;
+}
+
+.button:hover {
+  background-color: #fff;
+  /* border: 2px solid #fff; */
+  color: var(--clr-green);
+}
+
+.centered {
+  text-align: center;
 }

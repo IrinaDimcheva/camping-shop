@@ -1,0 +1,38 @@
+header {
+  background-color: var(--clr-lightgrey); 
+  /* background-color: #e5e5e5; */
+}
+
+.wrapper {
+  width: 70rem;
+  max-width: 100%;
+  margin-inline: auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo, ul {
+  padding-bottom: 0;
+}
+
+.logo {
+  color: var(--clr-green);
+  font-size: 2em;
+}
+
+ul {
+  display: flex;
+  gap: 1em;
+  color: var(--clr-medium);
+}
+
+ul i {
+  padding-right: .3em;
+}
+
+a:active,
+a:hover {
+  color: var(--clr-green);
+}

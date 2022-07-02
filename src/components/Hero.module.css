@@ -1,0 +1,39 @@
+.media {
+  background-image: url('../images/hero.jpg');
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 45rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.media::before {
+  display: block;
+  content: '';
+  background: rgba(0,0,0,0.1);
+  position: absolute;
+  top: 0; right: 0; left: 0; bottom: 0;
+  /* z-index: ; */
+}
+
+.content {
+  width: 75rem;
+  height: 45rem;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  color: #fff;
+  gap: 3em;
+  margin-inline: auto;
+  z-index: 10;
+  position: relative;
+}
+
