@@ -1,5 +1,6 @@
 header {
-  background-color: var(--clr-lightgrey); 
+  background-color: var(--clr-gray-100);
+  box-shadow: 0 0 0.1em 0.1em rgba(9, 9, 9, 0.05);
   /* background-color: #e5e5e5; */
 }
 
@@ -18,14 +19,14 @@ header {
 }
 
 .logo {
-  color: var(--clr-green);
+  color: var(--clr-green-200);
   font-size: 2em;
 }
 
 ul {
   display: flex;
   gap: 1em;
-  color: var(--clr-medium);
+  color: var(--clr-blue-500);
 }
 
 ul i {
@@ -35,5 +36,5 @@ ul i {
 a:active,
 a:hover,
 a.active {
-  color: var(--clr-green);
+  color: var(--clr-green-200);
 }

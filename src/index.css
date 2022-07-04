@@ -14,15 +14,21 @@ html {
 @import url('https://use.fontawesome.com/releases/v6.1.1/css/all.css');
 
 :root {
-  --clr-dark: #283739;
-  --clr-medium: #2c5d63;
-  --clr-green: #a2c11c;
+  --clr-blue-500: #2c5d63;
+  --clr-blue-700: #283739;
+  --clr-green-200: #a2c11c;
   /* --clr-green: #a4ca04; */
-  --clr-green-hover: #86a703;
-  --clr-lightgrey: #e0e0e0;
-  /* --clr-lightgrey: #e5e5e5; */
-  /* --clr-lightgrey: #e9e9e9; */
-  /* --clr-lightgrey: #efefef; */
+  --clr-green-400: #86a703;
+  --clr-gray-50: #efefef;
+  --clr-gray-100: #e9e9e9;
+  --clr-gray-150: #e5e5e5;
+  --clr-gray-200: #e0e0e0;
+
+  --clr-white: #fff;
+
+  --border-radius-small: 0.25rem;
+  --border-radius-medium: 0.5rem;
+  --border-radius-big: 1rem;
 }
 
 /* body {
@@ -41,8 +47,8 @@ code {
 
 html {
   font: 18px/1.5 'PT Sans', sans-serif;
-  color: var(--clr-dark);
-  background-color: #eee;
+  color: var(--clr-blue-700);
+  background-color: var(--clr-gray-50);
 }
 
 body, form, input, textarea, option, select, button, a {
@@ -63,11 +69,11 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.5em;
   padding-bottom: 0.5em;
   /* padding-top: 1.5rem; */
-  /* font-weight: normal; */
-  color: var(--clr-dark);
+  font-weight: normal;
+  color: var(--clr-blue-700);
 }
 
-h1 { font-size: 3.6em; }
+h1 { font-size: 2.8em; }
 h2 { font-size: 2.0em; }
 h3 { font-size: 1.6em; }
 h4 { font-size: 1.4em; }
@@ -78,25 +84,32 @@ a {
   text-decoration: none;
 }
 
-.button {
+.btn {
   cursor: pointer;
   margin-bottom: 1em;
   padding: 0.5em 1.5em;
-  /* background-color: var(--clr-green);
-  border: 2px solid var(--clr-green); */
-  background-color: #fff;
-  color: var(--clr-green);
+  background-color: var(--clr-white);
+  color: var(--clr-green-200);
   border-radius: 0.2em;
-  border: 2px solid var(--clr-green);
+  border: 2px solid var(--clr-green-200);
 }
 
-.button:hover {
-  background-color: var(--clr-green);
-  border: 2px solid var(--clr-green);
-  color: #fff;
-  /* background-color: #fff;
-  color: var(--clr-green); */
-  /* border: 2px solid #fff; */
+.btn:hover {
+  background-color: var(--clr-green-200);
+  border: 2px solid var(--clr-green-200);
+  color: var(--clr-white);
+}
+
+.btn-primary {
+  background-color: var(--clr-green-200);
+  border: 2px solid var(--clr-green-200);
+  color: var(--clr-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--clr-green-400);
+  border: 2px solid var(--clr-green-400);
+  color: var(--clr-white);
 }
 
 .centered {

@@ -1,5 +1,5 @@
 footer {
   padding-top: 2em;
-  background-color: var(--clr-dark);
-  color: var(--clr-lightgrey);
+  background-color: var(--clr-blue-700);
+  color: var(--clr-gray-50);
 }

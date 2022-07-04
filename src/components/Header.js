@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import styles from './Header.module.css';
 
@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header>
       <div className={styles.wrapper}>
-        <p className={styles.logo}><i className="fa-brands fa-accusoft"></i>CampingShop</p>
+        <Link to='/' className={styles.logo}><i className="fa-brands fa-accusoft"></i>CampingShop</Link>
         <nav>
           <ul>
             <li>
@@ -19,8 +19,8 @@ const Header = () => {
                 <i className="fa-solid fa-cart-shopping"></i>Cart
               </NavLink>
             </li>
-            {/* <li><NavLink></NavLink></li>
-          <li><NavLink></NavLink></li> */}
+            <li><NavLink to='/login'>Login</NavLink></li>
+            {/* <li><NavLink></NavLink></li> */}
           </ul>
         </nav>
       </div>

@@ -1,0 +1,30 @@
+.container {
+  max-width: 40em;
+  margin: 2rem auto;
+  text-align: center;
+
+}
+
+form {
+  padding: 1.5em;
+}
+
+label {
+  display: block;
+  padding-bottom: 0.5em;
+}
+
+input {
+  padding: 0.5em;
+  width: 90%;
+  border-radius: var(--border-radius-small);
+  border-color: var(--clr-gray-200);
+}
+
+.link {
+  color: var(--clr-green-200);
+}
+
+.link:hover {
+  color: var(--clr-green-400);
+}

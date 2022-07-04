@@ -1,5 +1,4 @@
 .media {
-  background-image: url('../images/hero.jpg');
   width: 100%;
   position: relative;
   top: 0;
@@ -7,9 +6,13 @@
   bottom: 0;
   right: 0;
   height: 45rem;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.media img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .media::before {
@@ -29,14 +32,16 @@
   justify-content: center;
   align-content: center;
   align-items: center;
-  color: #fff;
   gap: 3em;
   margin-inline: auto;
   z-index: 10;
   position: relative;
 }
 
-h1 {
+.title {
   text-shadow: 0 0.05em 0 #000;
   color: #fff;
+  opacity: 0.9;
+  font-size: 3.8em;
+  font-weight: bold;
 }
