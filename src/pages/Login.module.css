@@ -1,8 +1,11 @@
 .container {
   max-width: 40em;
-  margin: 2rem auto;
+  margin: 3rem auto;
   text-align: center;
-
+  background-color: var(--clr-gray-50);
+  border-radius: var(--border-radius-medium);
+  box-shadow: 0 0 0.3em 0.1em rgba(227, 225, 225, 0.2);
+  /* box-shadow: 0 0.01em 0.1em 0.05em rgba(0,0,0,0.1); */
 }
 
 form {
@@ -19,6 +22,8 @@ input {
   width: 90%;
   border-radius: var(--border-radius-small);
   border-color: var(--clr-gray-200);
+  outline-color: var(--clr-green-200);
+  background-color: var(--clr-white);
 }
 
 .link {

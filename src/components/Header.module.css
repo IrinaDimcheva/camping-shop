@@ -1,6 +1,7 @@
 header {
-  background-color: var(--clr-gray-100);
-  box-shadow: 0 0 0.1em 0.1em rgba(9, 9, 9, 0.05);
+  /* background-color: var(--clr-gray-100); */
+  /* box-shadow: 0 0 0.1em 0.1em rgba(9, 9, 9, 0.05); */
+  box-shadow: 0 0.01em 0.15em 0.05em rgba(0,0,0,0.1);
   /* background-color: #e5e5e5; */
 }
 

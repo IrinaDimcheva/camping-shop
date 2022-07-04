@@ -6,10 +6,12 @@
 .categories {
   padding: 1em;
   margin: 1em auto 3em;
-  max-width: 70rem;
+  max-width: 75rem;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr); */
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   align-items: center;
   justify-content: center;
@@ -29,13 +31,13 @@
 }
 
 .media {
-  width: 33rem;
+  max-width: 33rem;
   position: absolute;
-  top: 3.5em;
+  top: 5em;
   left: 0.5em;
   bottom: 0.5em;
   right: 0.5em;
-  height: 30rem;
+  height: 28.5rem;
   overflow: hidden;
   object-fit: cover;
 }
