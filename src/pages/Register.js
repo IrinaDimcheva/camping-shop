@@ -18,6 +18,23 @@ const Register = () => {
           <label htmlFor="re-password">Repeat Password</label>
           <input type="password" id="re-password" name="rePassword" />
         </p>
+        <hr />
+        <p>
+          <label htmlFor="full-name">Full Name</label>
+          <input type="text" name="fullName" id="full-name" />
+        </p>
+        <p>
+          <label htmlFor="street">Street</label>
+          <input type="text" name="street" id="street" />
+        </p>
+        <p>
+          <label htmlFor="postal">Postal Code</label>
+          <input type="text" name="postal" id="postal" />
+        </p>
+        <p>
+          <label htmlFor="city">City</label>
+          <input type="text" name="city" id="city" />
+        </p>
         <button className="btn btn-primary">Register</button>
       </form>
       <p>Have an account already? <Link to='/login' className={styles.link}>Login</Link></p>

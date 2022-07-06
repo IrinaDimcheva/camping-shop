@@ -4,6 +4,9 @@ import Categories from './components/Categories';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import Orders from './pages/admin/Orders';
+import ProductsAll from './pages/admin/ProductsAll';
+import ProductsNew from './pages/admin/ProductsNew';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -17,6 +20,9 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/admin/products' element={<ProductsAll />} />
+          <Route path='/admin/products/new' element={<ProductsNew />} />
+          <Route path='/admin/orders' element={<Orders />} />
         </Routes>
       </div>
       <Footer />

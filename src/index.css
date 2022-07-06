@@ -104,6 +104,11 @@ a {
   color: var(--clr-white);
 }
 
+.btn-alt {
+  background-color: transparent;
+  margin-right: 0.5em;
+}
+
 .btn-primary {
   background-color: var(--clr-green-200);
   border: 2px solid var(--clr-green-200);

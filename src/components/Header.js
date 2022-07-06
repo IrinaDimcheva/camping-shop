@@ -19,8 +19,21 @@ const Header = () => {
                 <i className="fa-solid fa-cart-shopping"></i>Cart
               </NavLink>
             </li>
-            <li><NavLink to='/login'>Login</NavLink></li>
-            {/* <li><NavLink></NavLink></li> */}
+            <li>
+              <NavLink to='/admin/products' className={(navData) => navData.isActive ? styles.active : ''}>
+                Manage Products
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to='/admin/orders' className={(navData) => navData.isActive ? styles.active : ''}>
+                Manage Orders
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to='/login' className={(navData) => navData.isActive ? styles.active : ''}>
+                Login
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </div>
