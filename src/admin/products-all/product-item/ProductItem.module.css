@@ -1,0 +1,36 @@
+.card {
+  background-color: var(--clr-white);
+  flex: 0 1 calc((70rem - 2em) / 3);
+  border-radius: 0.3em;
+  box-shadow: 0 0 0.2em 0.1em rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 0.1em 0.05em rgba(0,0,0,0.2);
+}
+
+.media {
+  max-width: calc((70rem - 2em) / 3);
+  height: 20rem;
+  max-height: 20rem;
+  overflow: hidden;
+  position: relative;
+  object-fit: cover;
+
+}
+
+.media image {
+  width: 100%;
+  display: block;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.content {
+  padding-inline: 1em;
+}

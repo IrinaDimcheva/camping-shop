@@ -1,17 +1,18 @@
-import styles from '../Login.module.css';
+import styles from '../../pages/Login.module.css';
 
-const ProductsNew = () => {
+const ProductNew = () => {
   return (
     <div className={styles.container}>
       <h1>Add new Product</h1>
       <form action="">
         <p>
-          <label htmlFor="title">Title</label>
-          <input type="text" name="title" id="title" />
+          <label htmlFor="name">Name</label>
+          <input type="text" name="name" id="name" />
         </p>
         <p>
-          <label htmlFor="image">Image</label>
+          <label htmlFor="image">ImageUrl</label>
           <input type="text" name="image" id="image" />
+          <img src="" alt="" />
         </p>
         <p>
           <label htmlFor="summary">Summary</label>
@@ -23,7 +24,11 @@ const ProductsNew = () => {
         </p>
         <p>
           <label htmlFor="description">Description</label>
-          <textarea name="description" id="description" rows="7"></textarea>
+          <textarea name="description" id="description" rows="7" minLength={10} maxLength={2000}></textarea>
+        </p>
+        <p>
+          <label htmlFor="quantity">Quantity</label>
+          <input type="number" name="quantity" id="quantity" min={0} />
         </p>
         <button type="reset" className="btn btn-alt">Reset</button>
         <button className="btn btn-primary">Save</button>
@@ -32,4 +37,4 @@ const ProductsNew = () => {
   );
 };
 
-export default ProductsNew;
+export default ProductNew;

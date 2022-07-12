@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Hero.module.css';
-import hero from '../images/hero.jpg';
+import hero from '../../images/hero.jpg';
 
 const Hero = () => {
   return (

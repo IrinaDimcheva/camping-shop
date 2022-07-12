@@ -1,12 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Categories from './components/Categories';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Hero from './components/Hero';
+import Footer from './components/shared/footer/Footer';
+import Header from './components/shared/header/Header';
 import Orders from './pages/admin/Orders';
-import ProductsAll from './pages/admin/ProductsAll';
-import ProductsNew from './pages/admin/ProductsNew';
+import ProductsAll from './admin/products-all/ProductsAll';
+import ProductNew from './admin/product-new/ProductNew';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -21,7 +19,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/admin/products' element={<ProductsAll />} />
-          <Route path='/admin/products/new' element={<ProductsNew />} />
+          <Route path='/admin/products/new' element={<ProductNew />} />
           <Route path='/admin/orders' element={<Orders />} />
         </Routes>
       </div>

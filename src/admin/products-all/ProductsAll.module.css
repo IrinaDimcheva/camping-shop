@@ -1,0 +1,10 @@
+.container {
+  max-width: 70rem;
+  margin: 2em auto;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
