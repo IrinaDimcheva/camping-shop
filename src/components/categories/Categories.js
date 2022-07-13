@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 
 import styles from './Categories.module.css';
 // import campingEquipment from '../images/Camping-equipment.png';
-import campingEquipment from '../../images/camping-equipment.jpg';
-import tent from '../../images/tent.jpg';
-import accessories from '../../images/accessories.jpg';
-import sleepingBags from '../../images/sleeping-bags.jpg';
+// import campingEquipment from '../../images/camping-equipment.jpg';
+// import tent from '../../images/tent.jpg';
+// import accessories from '../../images/accessories.jpg';
+// import sleepingBags from '../../images/sleeping-bags.jpg';
 
 const Categories = () => {
   return (
@@ -15,7 +15,7 @@ const Categories = () => {
           <Link to='/products/camping-equipment'>
             <h2>Camping Equipment</h2>
             <div className={styles.media}>
-              <img src={campingEquipment} alt="camping-equipment" />
+              <img src='/images/camping-equipment.jpg' alt="camping-equipment" />
             </div>
           </Link>
         </li>
@@ -23,7 +23,7 @@ const Categories = () => {
           <Link to='/products/tents'>
             <h2>Tents</h2>
             <div className={styles.media}>
-              <img src={tent} alt="tent" />
+              <img src='/images/tent.jpg' alt="tent" />
             </div>
           </Link>
         </li>
@@ -31,7 +31,7 @@ const Categories = () => {
           <Link to='/products/sleeping-bags'>
             <h2>Sleeping Bags & Mats</h2>
             <div className={styles.media}>
-              <img src={sleepingBags} alt="sleepingBags" />
+              <img src='/images/sleeping-bags.jpg' alt="sleeping-bags" />
             </div>
           </Link>
         </li>
@@ -39,7 +39,7 @@ const Categories = () => {
           <Link to='/products/accessories'>
             <h2>Accessories</h2>
             <div className={styles.media}>
-              <img src={accessories} alt="accessories" />
+              <img src='/images/accessories.jpg' alt="accessories" />
             </div>
           </Link>
         </li>

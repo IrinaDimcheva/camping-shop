@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import ProductItem from "./product-item/ProductItem";
 import styles from './ProductsAll.module.css';
-import { getAll } from '../../services/admin-product-service';
+import { getAll, getProductById } from '../../services/admin-product-service';
 
 const ProductsAll = () => {
   const [products, setProducts] = useState([]);
+
+  // const navigate = useNavigate();
+  // const location = useLocation();
 
   useEffect(() => {
     getAll().then(result => {
@@ -17,6 +20,13 @@ const ProductsAll = () => {
   // method: 'POST',
   // mode: 'cors',
   // credentials: 'include',
+
+  // const detailClickHandler = (product) => {
+  //   getProductById(product._id).then(result => {
+  //     console.log(result);
+  //     return result;
+  //   });
+  // };
 
   return (
     <div className={`${"centered"} ${styles.container}`}>
@@ -30,8 +40,8 @@ const ProductsAll = () => {
         <ul className={styles.list}>
           {!products.length && <li>Loading...</li>}
           {products.map(product => {
-            // <li>Hi</li>
-            return <ProductItem key={product._id} product={product} />
+            // return <ProductItem key={product._id} product={product} onClick={detailClickHandler} />
+            return <ProductItem key={product._id} {...product} />
           })}
         </ul>
       </section>

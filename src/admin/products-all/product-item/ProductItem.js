@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 const ProductItem = (props) => {
   return (
-    <li className={styles.card}>
-      <Link to={'/products/:id/detail'}>
+    <li className={styles.card} >
+      <Link to={`/admin/products/${props._id}`} >
         <div className={styles.media}>
-          <img className={styles.image} src={props.product.imageUrl} alt={props.product.name} />
+          <img className={styles.image} src={props.imageUrl} alt={props.name} />
         </div>
         <div className={styles.content}>
-          <h3>{props.product.name}</h3>
-          <p>{props.product.price.toFixed(2)}BGN</p>
+          <h3>{props.name}</h3>
+          <p>{props.price.toFixed(2)}BGN</p>
         </div>
       </Link>
     </li>
