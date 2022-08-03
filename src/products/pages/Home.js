@@ -1,5 +1,5 @@
-import Categories from "../components/categories/Categories";
-import Hero from "../components/hero/Hero";
+import Categories from "../components/Categories";
+import Hero from "../components/Hero";
 
 const Home = () => {
   return (

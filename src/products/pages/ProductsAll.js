@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import ProductItem from "./product-item/ProductItem";
+import ProductItem from "../components/ProductItem";
 import styles from './ProductsAll.module.css';
-import { getAll, getProductById } from '../../services/admin-product-service';
+import { getProducts, getProductById } from '../../services/admin-product-service';
 
 const ProductsAll = () => {
   const [products, setProducts] = useState([]);
@@ -12,7 +12,7 @@ const ProductsAll = () => {
   // const location = useLocation();
 
   useEffect(() => {
-    getAll().then(result => {
+    getProducts().then(result => {
       setProducts(result.products);
       console.log(result.products)
     }).catch(err => console.log(err));

@@ -14,7 +14,7 @@ const ProductsDetail = () => {
   useEffect(() => {
     getProductById(productId).then(product => {
       setProduct(product);
-      console.log(product.info);
+      // console.log(product.info);
     });
   }, []);
 
@@ -34,7 +34,7 @@ const ProductsDetail = () => {
             </div>
             <div className={styles.cart}>
               <div className={styles.quantity}>
-                <h6>Quantity</h6>
+                <h6 className={styles['quantity-title']}>Quantity</h6>
                 <div className={styles.counter}>
                   <button className={styles.light}>-</button>
                   <span>1</span>
@@ -46,9 +46,9 @@ const ProductsDetail = () => {
           </div>
           <div className={styles.info}>
             <h3>Product Information</h3>
-            <ul>
+            <ul className={styles['info-list']}>
               {product.info.map((item, i) => {
-                return <li key={i}>{item}</li>
+                return <li className={styles['info-item']} key={i}>{item}</li>
               })}
             </ul>
           </div>

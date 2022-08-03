@@ -1,4 +1,4 @@
-import styles from '../../pages/Login.module.css';
+import styles from './ProductNew.module.css';
 
 const ProductNew = () => {
   return (

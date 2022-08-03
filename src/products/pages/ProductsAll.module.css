@@ -1,0 +1,16 @@
+/* .container {
+  text-align: ;
+} */
+
+/* .list {
+  display: flex;
+  flex-wrap: wrap;
+} */
+
+.list {
+  max-width: 70rem;
+  margin: 2em auto;
+  padding-inline: 2em;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+}

@@ -1,0 +1,48 @@
+.container {
+  max-width: 40em;
+  margin: 3rem auto;
+  /* padding: 1.5rem; */
+  /* text-align: center; */
+  background-color: var(--clr-gray-50);
+  border-radius: var(--border-radius-medium);
+  box-shadow: 0 0 0.3em 0.1em rgba(227, 225, 225, 0.2);
+  /* box-shadow: 0 0.01em 0.1em 0.05em rgba(0,0,0,0.1); */
+}
+
+.container h1,
+.container > p {
+  text-align: center;
+}
+
+form {
+  padding: 1.5em;
+  max-width: 38em;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  padding-bottom: 0.5em;
+}
+
+input, textarea {
+  padding: 0.5em;
+  width: 100%;
+  border-radius: var(--border-radius-small);
+  border-color: var(--clr-gray-200);
+  outline-color: var(--clr-green-200);
+  background-color: var(--clr-white);
+}
+
+hr {
+  border: 1px solid var(--clr-gray-200);
+  margin-bottom: 1rem;
+}
+
+.link {
+  color: var(--clr-green-200);
+}
+
+.link:hover {
+  color: var(--clr-green-400);
+}
