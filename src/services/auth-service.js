@@ -9,7 +9,7 @@ const register = (data) => {
     },
     credentials: 'include'
   }).then(res => res.json());
-}
+};
 
 const login = (data) => {
   return fetch(`${baseUrl}/auth/login`, {
@@ -20,9 +20,18 @@ const login = (data) => {
     },
     credentials: 'include'
   }).then(res => res.json());
-}
+};
+
+const logout = () => {
+  return fetch(`${baseUrl}/auth/logout`, {
+    method: 'POST',
+    credentials: 'include'
+  }).then(res => res.json())
+    .then(res => console.log(res));
+};
 
 export {
   register,
-  login
+  login,
+  logout
 }

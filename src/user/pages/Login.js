@@ -1,12 +1,17 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { AuthContext } from '../../shared/context/auth-context';
 import { login } from '../../services/auth-service';
 import styles from './Login.module.css';
+import { useContext } from 'react';
+import { useEffect } from 'react';
 
 const Login = () => {
+  const auth = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const emailChangeHandler = event => {
     setEmail(event.target.value);
@@ -15,6 +20,10 @@ const Login = () => {
   const passwordChangeHandler = event => {
     setPassword(event.target.value);
   };
+
+  // useEffect(() => {
+
+  // })
 
   const loginHandler = (event) => {
     event.preventDefault();
@@ -25,8 +34,12 @@ const Login = () => {
     }
 
     login(userData).then(user => {
+      // auth.login(user);
+      auth.login({ isLoggedIn: !!user, userId: user._id, isAdmin: user.isAdmin });
       console.log(user);
-    });
+      console.log(auth.isLoggedIn, auth.userId, auth.isAdmin)
+      navigate('/');
+    }).catch(err => console.log(err));
 
     setEmail('');
     setPassword('');
