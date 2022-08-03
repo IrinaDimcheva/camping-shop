@@ -6,7 +6,8 @@ const register = (data) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
-    }
+    },
+    credentials: 'include'
   }).then(res => res.json());
 }
 
@@ -23,5 +24,5 @@ const login = (data) => {
 
 export {
   register,
-
+  login
 }

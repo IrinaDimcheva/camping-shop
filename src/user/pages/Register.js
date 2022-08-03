@@ -7,6 +7,10 @@ const Register = () => {
       <h1>Register</h1>
       <form action="">
         <p>
+          <label htmlFor="username">Username</label>
+          <input type="text" name="username" id="username" />
+        </p>
+        <p>
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email" />
         </p>
