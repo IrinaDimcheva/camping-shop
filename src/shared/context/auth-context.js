@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useCallback } from "react";
 import { createContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { logout as logoutService } from '../../services/auth-service';
 
 import parseCookies from '../util/parse-cookies';
 
@@ -13,6 +16,7 @@ export const AuthContext = createContext({
 });
 
 export const AuthContextProvider = ({ children }) => {
+  const navigate = useNavigate();
   const cookies = parseCookies();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,9 +32,13 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   const logout = useCallback(() => {
-    setIsLoggedIn(false);
-    setUserId(null);
-    setIsAdmin(false);
+    logoutService().then(() => {
+      setIsLoggedIn(false);
+      setUserId(null);
+      setIsAdmin(false);
+      navigate('/login');
+      return null;
+    });
   }, []);
 
   return (

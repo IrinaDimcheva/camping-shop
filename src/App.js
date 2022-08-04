@@ -1,3 +1,4 @@
+import { useContext, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Footer from './shared/components/Footer';
@@ -10,12 +11,19 @@ import Login from './user/pages/Login';
 import Register from './user/pages/Register';
 import ProductDetail from './products/pages/ProductDetail';
 import { AuthContext, AuthContextProvider } from './shared/context/auth-context';
+import parseCookies from './shared/util/parse-cookies';
 import './App.css';
-import { useContext } from 'react';
 
 function App() {
   const { isLoggedIn, userId, isAdmin, login, logout } = useContext(AuthContext);
+  console.log(parseCookies());
 
+  // useEffect(() => {
+  //   const token = getCookie('auth-cookie');
+  //   if (token) {
+  //     login(token);
+  //   }
+  // }, [token]);
   // let routes;
   // if (isLoggedIn) {
   //   routes = (

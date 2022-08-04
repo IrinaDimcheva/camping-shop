@@ -27,7 +27,10 @@ const logout = () => {
     method: 'POST',
     credentials: 'include'
   }).then(res => res.json())
-    .then(res => console.log(res));
+    .then(res => {
+      console.log(res)
+    }).catch(err => console.log(err));
+
 };
 
 export {
