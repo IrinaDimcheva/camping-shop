@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 const ProductItem = (props) => {
   return (
     <li className={styles.card} >
-      <Link to={`/admin/products/${props._id}`} >
+      {/* <Link to={`/admin/products/${props._id}`} > */}
+      <Link to={`/products/${props._id}`} >
         <div className={styles.media}>
           <img className={styles.image} src={props.imageUrl} alt={props.name} />
         </div>

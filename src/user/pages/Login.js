@@ -35,10 +35,14 @@ const Login = () => {
 
     login(userData).then(user => {
       // auth.login(user);
-      auth.login({ isLoggedIn: !!user, userId: user._id, isAdmin: user.isAdmin });
+      if (!user) {
+        return;
+      }
+      auth.login(user._id, user.admin);
+      navigate('/');
+
       console.log(user);
       console.log(auth.isLoggedIn, auth.userId, auth.isAdmin)
-      navigate('/');
     }).catch(err => console.log(err));
 
     setEmail('');

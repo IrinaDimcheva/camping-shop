@@ -44,7 +44,7 @@ const Categories = () => {
           </Link>
         </li>
       </ul>
-      <Link to='/products/all' className={styles.all}>
+      <Link to='/products' className={styles.all}>
         All Products
       </Link>
     </section>
