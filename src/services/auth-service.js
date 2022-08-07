@@ -1,6 +1,6 @@
 const baseUrl = 'http://localhost:5000/api';
 
-const register = (data) => {
+const registerService = (data) => {
   return fetch(`${baseUrl}/auth/register`, {
     body: JSON.stringify(data),
     method: 'POST',
@@ -11,7 +11,7 @@ const register = (data) => {
   }).then(res => res.json());
 };
 
-const login = (data) => {
+const loginService = (data) => {
   return fetch(`${baseUrl}/auth/login`, {
     body: JSON.stringify(data),
     method: 'POST',
@@ -22,7 +22,7 @@ const login = (data) => {
   }).then(res => res.json());
 };
 
-const logout = () => {
+const logoutService = () => {
   return fetch(`${baseUrl}/auth/logout`, {
     method: 'POST',
     credentials: 'include'
@@ -32,7 +32,7 @@ const logout = () => {
 };
 
 export {
-  register,
-  login,
-  logout
-}
+  registerService,
+  loginService,
+  logoutService
+};

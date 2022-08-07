@@ -1,50 +1,66 @@
-import { useState } from "react";
-import { useCallback } from "react";
-import { createContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { createContext, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { logout as logoutService } from '../../services/auth-service';
+import { logoutService } from '../../services/auth-service';
 
-export const AuthContext = createContext({
+const AuthContext = createContext({
   isLoggedIn: false,
-  userId: null,
+  user: null,
   isAdmin: false,
-  login: () => { },
+  login: (data) => { },
   logout: () => { }
 });
 
-export const AuthContextProvider = ({ children }) => {
+export const AuthContextProvider = props => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState('');
+  const [email, setEmail] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+  const userIsLoggedIn = !!userId;
   const navigate = useNavigate();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  const login = useCallback((user) => {
+  const loginHandler = useCallback((user) => {
     setIsLoggedIn(!!user);
+    setUsername(user.username);
     setUserId(user._id);
+    setEmail(user.email);
     setIsAdmin(user.isAdmin);
   }, []);
 
-  const logout = useCallback(() => {
+  const logoutHandler = useCallback(() => {
     logoutService().then(() => {
       setIsLoggedIn(false);
       setUserId(null);
       setIsAdmin(false);
+      setUsername(null);
+      setEmail(null);
       navigate('/login');
       return null;
     });
   }, []);
 
-  return (
-    <AuthContext.Provider value={{
-      isLoggedIn,
-      userId,
-      isAdmin,
-      login,
-      logout
-    }}>
-      {children}
-    </AuthContext.Provider>
-  );
+
+  const contextValue = {
+    username,
+    userId,
+    email,
+    isAdmin,
+    isLoggedIn,
+    login: loginHandler,
+    logout: logoutHandler
+  };
+
+  console.log(
+    username,
+    userId,
+    email,
+    isAdmin,
+    userIsLoggedIn)
+
+  return <AuthContext.Provider value={contextValue}>
+    {props.children}
+  </AuthContext.Provider>;
 };
+
+export default AuthContext;

@@ -1,81 +1,71 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
-import { AuthContext } from '../../shared/context/auth-context';
-import { login } from '../../services/auth-service';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import AuthContext from '../../shared/context/auth-context';
+import { loginService } from '../../services/auth-service';
 import styles from './Login.module.css';
-import { useContext } from 'react';
-import { useEffect } from 'react';
 
 const Login = () => {
-  const auth = useContext(AuthContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+    mode: 'onBlur' || 'onChange'
+  });
 
-  const emailChangeHandler = event => {
-    setEmail(event.target.value);
-  };
-
-  const passwordChangeHandler = event => {
-    setPassword(event.target.value);
-  };
-
-  // useEffect(() => {
-
-  // })
-
-  const loginHandler = (event) => {
+  const onSubmitHandler = (data, event) => {
     event.preventDefault();
+    setIsLoading(true);
 
-    const userData = {
-      email,
-      password
-    }
-
-    login(userData).then(user => {
-      // auth.login(user);
-      if (!user) {
-        return;
-      }
-      auth.login(user._id, user.admin);
-      navigate('/');
-
-      console.log(user);
-      console.log(auth.isLoggedIn, auth.userId, auth.isAdmin)
-    }).catch(err => console.log(err));
-
-    setEmail('');
-    setPassword('');
+    loginService(data)
+      .then(user => {
+        setIsLoading(false);
+        console.log(user);
+        authCtx.login(user);
+        navigate('/');
+      }).catch(err => {
+        console.log(err);
+        alert(err.message);
+      });
+    reset();
   };
 
   return (
     <div className={styles.container}>
+      {isLoading && <LoadingSpinner asOverlay />}
       <h1>Login</h1>
-      <form onSubmit={loginHandler}>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
         <p>
           <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
             name="email"
-            required
-            value={email}
-            onChange={emailChangeHandler}
+            placeholder='Email...'
+            {...register('email', {
+              required: 'Email is required.'
+            })}
           />
         </p>
+        <p className={styles.error}>{errors.email?.message}</p>
         <p>
           <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
             name="password"
-            required
-            value={password}
-            onChange={passwordChangeHandler}
+            placeholder='Password...'
+            {...register('password', {
+              required: 'Password is required.'
+            })}
           />
         </p>
-        <button className="btn btn-primary" type='submit'>Login</button>
+        <p className={styles.error}>{errors.password?.message}</p>
+        {!isLoading && (
+          <button className="btn btn-primary" type='submit'>Login</button>
+        )}
       </form>
       <p>Don't have an account? <Link to='/register' className={styles.link}>Create a new user</Link></p>
     </div>

@@ -1,4 +1,3 @@
-// import { useContext, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Footer from './shared/components/Footer';
@@ -10,28 +9,21 @@ import Home from './products/pages/Home';
 import Login from './user/pages/Login';
 import Register from './user/pages/Register';
 import ProductDetail from './products/pages/ProductDetail';
-import { AuthContext, AuthContextProvider } from './shared/context/auth-context';
-// import parseCookies from './shared/util/parse-cookies';
+import { AuthContextProvider } from './shared/context/auth-context';
+import { useAuth } from './shared/hooks/auth-hook';
 import './App.css';
 
 function App() {
-  // const { isLoggedIn, userId, isAdmin, login, logout } = useContext(AuthContext);
-  // console.log(parseCookies());
+  const { token, userId, isAdmin, login, logout } = useAuth();
 
-  // useEffect(() => {
-  //   const token = getCookie('auth-cookie');
-  //   if (token) {
-  //     login(token);
-  //   }
-  // }, [token]);
   // let routes;
-  // if (isLoggedIn) {
+  // if (token) {
   //   routes = (
   //     <>
   //       <Route path='/' element={<Home />} />
   //     </>
   //   );
-  // } else if (isLoggedIn && isAdmin) {
+  // } else if (token && isAdmin) {
   //   routes = (
   //     <>
   //       <Route path='/' element={<Home />} />

@@ -1,12 +1,9 @@
 .container {
   max-width: 40em;
   margin: 3rem auto;
-  /* padding: 1.5rem; */
-  /* text-align: center; */
   background-color: var(--clr-gray-50);
   border-radius: var(--border-radius-medium);
   box-shadow: 0 0 0.3em 0.1em rgba(227, 225, 225, 0.2);
-  /* box-shadow: 0 0.01em 0.1em 0.05em rgba(0,0,0,0.1); */
 }
 
 .container h1,
@@ -45,4 +42,8 @@ hr {
 
 .link:hover {
   color: var(--clr-green-400);
+}
+
+.error {
+  color: red;
 }
