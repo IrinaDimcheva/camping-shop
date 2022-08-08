@@ -16,14 +16,14 @@ const Header = () => {
         </Link>
         <nav>
           <ul>
-            {auth.isLoggedIn && (
+            {auth.isLoggedIn && !auth.isAdmin && (
               <li>
                 <NavLink className={(navData) => navData.isActive ? styles.active : ''} to='/favorites'>
                   <i className="fa-solid fa-heart"></i>Favorites
                 </NavLink>
               </li>
             )}
-            {auth.isLoggedIn && (
+            {auth.isLoggedIn && !auth.isAdmin && (
               <li>
                 <NavLink className={(navData) => navData.isActive ? styles.active : ''} to='/cart'>
                   <i className="fa-solid fa-cart-shopping"></i>Cart
@@ -34,6 +34,13 @@ const Header = () => {
               <li>
                 <NavLink to='/admin/products' className={(navData) => navData.isActive ? styles.active : ''}>
                   Manage Products
+                </NavLink>
+              </li>
+            )}
+            {auth.isLoggedIn && auth.isAdmin && (
+              <li>
+                <NavLink to='/admin/products/new' className={(navData) => navData.isActive ? styles.active : ''}>
+                  Add Product
                 </NavLink>
               </li>
             )}
