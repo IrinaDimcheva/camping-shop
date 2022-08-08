@@ -30,16 +30,16 @@ const Header = () => {
                 </NavLink>
               </li>
             )}
-            {auth.isLoggedIn && auth.isAdmin && (
+            {/* {auth.isLoggedIn && auth.isAdmin && (
               <li>
-                <NavLink to='/admin/products' className={(navData) => navData.isActive ? styles.active : ''}>
+                <NavLink to='/products' className={(navData) => navData.isActive ? styles.active : ''}>
                   Manage Products
                 </NavLink>
               </li>
-            )}
+            )} */}
             {auth.isLoggedIn && auth.isAdmin && (
               <li>
-                <NavLink to='/admin/products/new' className={(navData) => navData.isActive ? styles.active : ''}>
+                <NavLink to='/products/new' className={(navData) => navData.isActive ? styles.active : ''}>
                   Add Product
                 </NavLink>
               </li>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 
 import { createProduct } from '../../services/product-service';
@@ -6,6 +7,7 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import styles from './ProductNew.module.css';
 
 const ProductNew = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     mode: 'onTouched' || 'onBlur'
@@ -18,6 +20,8 @@ const ProductNew = () => {
       .then(product => {
         setIsLoading(false);
         console.log(product);
+        navigate('/products');
+
       })
       .catch(err => {
         console.log(err);

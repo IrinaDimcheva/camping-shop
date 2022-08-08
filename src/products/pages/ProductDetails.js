@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductById } from '../../services/product-service';
 
-import styles from './ProductDetail.module.css';
+import styles from './ProductDetails.module.css';
 
-const ProductsDetail = () => {
+const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const params = useParams();
   const { productId } = params;
@@ -12,8 +12,8 @@ const ProductsDetail = () => {
 
   useEffect(() => {
     getProductById(productId).then(product => {
+      console.log(product);
       setProduct(product);
-      console.log(product.info);
     });
   }, [productId]);
 
@@ -28,7 +28,7 @@ const ProductsDetail = () => {
           <div className={styles.content}>
             <div>
               <h3>{product.name}</h3>
-              <p>{product.price.toFixed(2)}BGN</p>
+              <p>{product.price?.toFixed(2)}BGN</p>
               <p>{product.description}</p>
             </div>
             <div className={styles.cart}>
@@ -46,7 +46,7 @@ const ProductsDetail = () => {
           <div className={styles.info}>
             <h3>Product Information</h3>
             <ul className={styles['info-list']}>
-              {product.info.map((item, i) => {
+              {product.info?.map((item, i) => {
                 return <li className={styles['info-item']} key={i}>{item}</li>
               })}
             </ul>
@@ -57,4 +57,4 @@ const ProductsDetail = () => {
   );
 }
 
-export default ProductsDetail;
+export default ProductDetails;

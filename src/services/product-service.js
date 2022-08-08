@@ -5,7 +5,7 @@ const getProducts = () => {
 };
 
 const getProductsByCategory = (category) => {
-  return fetch(`${baseUrl}/products/${category}`).then(res => res.json());
+  return fetch(`${baseUrl}/products/category/${category}`).then(res => res.json());
 };
 
 const getProductById = (productId) => {

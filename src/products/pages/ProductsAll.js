@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import ProductItem from "../components/ProductItem";
 import styles from './ProductsAll.module.css';
-import { getProducts, getProductById } from '../../services/product-service';
+import { getProducts } from '../../services/product-service';
 
 const ProductsAll = () => {
   const [products, setProducts] = useState([]);
-
-  // const navigate = useNavigate();
-  // const location = useLocation();
 
   useEffect(() => {
     getProducts().then(result => {
@@ -17,16 +13,6 @@ const ProductsAll = () => {
       console.log(result.products)
     }).catch(err => console.log(err));
   }, []);
-  // method: 'POST',
-  // mode: 'cors',
-  // credentials: 'include',
-
-  // const detailClickHandler = (product) => {
-  //   getProductById(product._id).then(result => {
-  //     console.log(result);
-  //     return result;
-  //   });
-  // };
 
   return (
     <div className={`${"centered"} ${styles.container}`}>
@@ -40,7 +26,6 @@ const ProductsAll = () => {
         <ul className={styles.list}>
           {!products.length && <li>Loading...</li>}
           {products.map(product => {
-            // return <ProductItem key={product._id} product={product} onClick={detailClickHandler} />
             return <ProductItem key={product._id} {...product} />
           })}
         </ul>

@@ -5,16 +5,14 @@ import Header from './shared/components/Header';
 import Orders from './admin/Orders';
 import ProductsAll from './products/pages/ProductsAll';
 import ProductNew from './products/pages/ProductNew';
+import ProductDetails from './products/pages/ProductDetails';
 import Home from './products/pages/Home';
 import Login from './user/pages/Login';
 import Register from './user/pages/Register';
-import ProductDetail from './products/pages/ProductDetail';
 import { AuthContextProvider } from './shared/context/auth-context';
-import { useAuth } from './shared/hooks/auth-hook';
 import './App.css';
 
 function App() {
-  const { token, userId, isAdmin, login, logout } = useAuth();
 
   // let routes;
   // if (token) {
@@ -52,9 +50,9 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/products' element={<ProductsAll />} />
-            <Route path='/products/:category' element={<ProductsAll />} />
-            <Route path='/admin/products/new' element={<ProductNew />} />
-            <Route path='/products/:productId' element={<ProductDetail />} />
+            <Route path='/products/:productId' element={<ProductDetails />} />
+            <Route path='/products/category/:category' element={<ProductsAll />} />
+            <Route path='/products/new' element={<ProductNew />} />
             <Route path='/admin/orders' element={<Orders />} />
           </Routes>
         </div>
