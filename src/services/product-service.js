@@ -19,13 +19,25 @@ const createProduct = (data) => {
       'Content-type': 'application/json'
     },
     body: JSON.stringify(data),
-    credentials: "include"
+    credentials: 'include'
   }).then(res => res.json());
 };
+
+const updateProduct = (productId, data) => {
+  return fetch(`${baseUrl}/products/${productId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify(data),
+    credentials: 'include'
+  }).then(res => res.json());
+}
 
 export {
   getProducts,
   getProductsByCategory,
   getProductById,
-  createProduct
+  createProduct,
+  updateProduct
 };

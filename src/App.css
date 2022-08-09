@@ -16,6 +16,7 @@
   /* #a6cbd2 */
   /* #92c7d0 */
   --clr-white: #fff;
+  --clr-red-400: #dc3545;
 
   --border-radius-small: 0.25rem;
   --border-radius-medium: 0.5rem;
@@ -92,6 +93,18 @@ a {
   background-color: var(--clr-green-400);
   border: 2px solid var(--clr-green-400);
   color: var(--clr-white);
+}
+
+.btn-danger {
+  background-color: var(--clr-red-400);
+  border-color: var(--clr-red-400);
+  color: var(--clr-white);
+}
+
+.btn-danger:hover {
+  background-color: var(--clr-white);
+  border-color: var(--clr-red-400);
+  color: var(--clr-red-400);
 }
 
 .centered {

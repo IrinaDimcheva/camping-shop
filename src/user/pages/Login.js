@@ -24,7 +24,7 @@ const Login = () => {
         setIsLoading(false);
         console.log(user);
         authCtx.login(user);
-        navigate('/');
+        navigate(-1 || '/');
       }).catch(err => {
         console.log(err);
         alert(err.message);

@@ -9,6 +9,7 @@ import ProductDetails from './products/pages/ProductDetails';
 import Home from './products/pages/Home';
 import Login from './user/pages/Login';
 import Register from './user/pages/Register';
+import ProductEdit from './products/pages/ProductUpdate';
 import { AuthContextProvider } from './shared/context/auth-context';
 import './App.css';
 
@@ -51,6 +52,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/products' element={<ProductsAll />} />
             <Route path='/products/:productId' element={<ProductDetails />} />
+            <Route path='/products/:productId/edit' element={<ProductEdit />} />
             <Route path='/products/category/:category' element={<ProductsAll />} />
             <Route path='/products/new' element={<ProductNew />} />
             <Route path='/admin/orders' element={<Orders />} />

@@ -94,6 +94,14 @@
   margin-left: 1.5rem;
 }
 
+.admin-actions {
+  text-align: center;
+}
+
+.margin {
+  margin-right: 1rem;
+}
+
 @media (min-width: 768px) {
   .wrapper {
     grid-template-columns: repeat(auto-fill, minmax(34rem, 1fr));
