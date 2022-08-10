@@ -14,13 +14,6 @@ const ProductEdit = () => {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
-    name: '',
-    imageUrl: '',
-    info: '',
-    price: '',
-    description: '',
-    quantity: '',
-    category: '',
     mode: 'onTouched' || 'onBlur'
   });
 

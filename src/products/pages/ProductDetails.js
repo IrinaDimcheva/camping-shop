@@ -2,25 +2,32 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import { getProductById } from '../../services/product-service';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import AuthContext from '../../shared/context/auth-context';
 import styles from './ProductDetails.module.css';
 
 const ProductDetails = () => {
   const authCtx = useContext(AuthContext);
   const [product, setProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const params = useParams();
   const { productId } = params;
 
   useEffect(() => {
+    setIsLoading(true);
     getProductById(productId).then(product => {
-      console.log(product);
+      // console.log(product);
+      setIsLoading(false);
       setProduct(product);
+    }).catch(err => {
+      console.log(err);
+      setIsLoading(false);
     });
   }, [productId]);
 
   return (
-    <>
-      {!product && <p>Loading...</p>}
+    <div className='centered'>
+      {isLoading && <LoadingSpinner className='centered' />}
       {product && (
         <article>
           <div className={styles.wrapper}>
@@ -64,7 +71,7 @@ const ProductDetails = () => {
           )}
         </article>
       )}
-    </>
+    </div>
   );
 }
 

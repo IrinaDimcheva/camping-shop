@@ -1,34 +1,33 @@
 import { useEffect, useState } from 'react';
 
-import ProductItem from "../components/ProductItem";
-import styles from './ProductsAll.module.css';
 import { getProducts } from '../../services/product-service';
+import ProductList from '../components/ProductList';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import styles from './ProductsAll.module.css';
 
 const ProductsAll = () => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     getProducts().then(result => {
       setProducts(result.products);
+      setIsLoading(false);
       console.log(result.products)
-    }).catch(err => console.log(err));
+    }).catch(err => {
+      console.log(err);
+      setIsLoading(false);
+    });
   }, []);
 
   return (
     <div className={`${"centered"} ${styles.container}`}>
-      {/* <h1>Products Administration</h1>
+      {isLoading && <LoadingSpinner />}
       <section>
-        <h2>Manage Products</h2>
-        <p><Link to="/admin/products/new" className="btn">Add Product</Link></p>
-      </section> */}
-      <section>
-        {/* <h2>All Products...</h2> */}
-        <ul className={styles.list}>
-          {!products.length && <li>Loading...</li>}
-          {products.map(product => {
-            return <ProductItem key={product._id} {...product} />
-          })}
-        </ul>
+        {!isLoading && products.length && (
+          <ProductList items={products} />
+        )}
       </section>
     </div>
   );
