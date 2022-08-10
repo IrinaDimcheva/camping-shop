@@ -4,6 +4,7 @@ import Footer from './shared/components/Footer';
 import Header from './shared/components/Header';
 import Orders from './admin/Orders';
 import ProductsAll from './products/pages/ProductsAll';
+import ProductsCategory from './products/pages/ProductsCategory';
 import ProductNew from './products/pages/ProductNew';
 import ProductDetails from './products/pages/ProductDetails';
 import Home from './products/pages/Home';
@@ -53,7 +54,7 @@ function App() {
             <Route path='/products' element={<ProductsAll />} />
             <Route path='/products/:productId' element={<ProductDetails />} />
             <Route path='/products/:productId/edit' element={<ProductEdit />} />
-            <Route path='/products/category/:category' element={<ProductsAll />} />
+            <Route path='/products/category/:category' element={<ProductsCategory />} />
             <Route path='/products/new' element={<ProductNew />} />
             <Route path='/admin/orders' element={<Orders />} />
           </Routes>

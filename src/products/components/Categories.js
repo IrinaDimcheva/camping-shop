@@ -12,7 +12,7 @@ const Categories = () => {
     <section className={styles.wrapper}>
       <ul className={styles.categories}>
         <li>
-          <Link to='/products/camping-equipment'>
+          <Link to='/products/category/campingEquipment'>
             <h2>Camping Equipment</h2>
             <div className={styles.media}>
               <img src='/images/camping-equipment.jpg' alt="camping-equipment" />
@@ -20,7 +20,7 @@ const Categories = () => {
           </Link>
         </li>
         <li>
-          <Link to='/products/tents'>
+          <Link to='/products/category/tents'>
             <h2>Tents</h2>
             <div className={styles.media}>
               <img src='/images/tent.jpg' alt="tent" />
@@ -28,7 +28,7 @@ const Categories = () => {
           </Link>
         </li>
         <li>
-          <Link to='/products/sleeping-bags'>
+          <Link to='/products/category/sleepingBags'>
             <h2>Sleeping Bags & Mats</h2>
             <div className={styles.media}>
               <img src='/images/sleeping-bags.jpg' alt="sleeping-bags" />
@@ -36,7 +36,7 @@ const Categories = () => {
           </Link>
         </li>
         <li>
-          <Link to='/products/accessories'>
+          <Link to='/products/category/accessories'>
             <h2>Accessories</h2>
             <div className={styles.media}>
               <img src='/images/accessories.jpg' alt="accessories" />
