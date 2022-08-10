@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
-import { getProductById } from '../../services/product-service';
+import { getProductById, deleteProduct } from '../../services/product-service';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import AuthContext from '../../shared/context/auth-context';
 import styles from './ProductDetails.module.css';
@@ -11,6 +11,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const params = useParams();
+  const navigate = useNavigate();
   const { productId } = params;
 
   useEffect(() => {
@@ -24,6 +25,18 @@ const ProductDetails = () => {
       setIsLoading(false);
     });
   }, [productId]);
+
+  const deleteHandler = () => {
+    setIsLoading(true);
+    deleteProduct(productId).then(deletedProduct => {
+      setIsLoading(false);
+      navigate(-1);
+      console.log('HERE: ', deletedProduct);
+    }).catch(err => {
+      setIsLoading(false);
+      console.log(err);
+    })
+  };
 
   return (
     <div className='centered'>
@@ -66,7 +79,7 @@ const ProductDetails = () => {
           {authCtx.isAdmin && (
             <div className={styles['admin-actions']}>
               <Link className={`btn btn-primary ${styles.margin}`} to={`/products/${productId}/edit`}>EDIT</Link>
-              <button className="btn btn-danger">DELETE</button>
+              <button className="btn btn-danger" onClick={deleteHandler}>DELETE</button>
             </div>
           )}
         </article>

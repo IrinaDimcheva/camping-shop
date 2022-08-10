@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import styles from './ProductItem.module.css';
 
 const ProductItem = (props) => {
-  console.log(props);
   return (
     <li className={styles.card} >
       <Link to={`/products/${props._id}`}>

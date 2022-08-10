@@ -32,6 +32,13 @@ const updateProduct = (productId, data) => {
     body: JSON.stringify(data),
     credentials: 'include'
   }).then(res => res.json());
+};
+
+const deleteProduct = (productId) => {
+  return fetch(`${baseUrl}/products/${productId}`, {
+    method: 'DELETE',
+    credentials: 'include'
+  }).then(res => res.json());
 }
 
 export {
@@ -39,5 +46,6 @@ export {
   getProductsByCategory,
   getProductById,
   createProduct,
-  updateProduct
+  updateProduct,
+  deleteProduct
 };

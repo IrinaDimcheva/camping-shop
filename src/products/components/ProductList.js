@@ -2,7 +2,6 @@ import ProductItem from './ProductItem';
 import styles from './ProductList.module.css';
 
 const ProductList = (props) => {
-  console.log(props.items)
   return (
     <ul className={styles.list}>
 
