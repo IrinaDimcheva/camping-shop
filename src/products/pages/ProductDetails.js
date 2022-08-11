@@ -70,6 +70,7 @@ const ProductDetails = () => {
                     <div className={styles.counter}>
                       <button className={styles.light} onClick={decrementHandler}>-</button>
                       <span>{quantity}</span>
+                      {/* <input type="number" min='1' max='5' step='1' defaultValue='1' /> */}
                       <button className={styles.light} onClick={incrementHandler}>+</button>
                     </div>
                   </div>

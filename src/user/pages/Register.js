@@ -24,7 +24,7 @@ const Register = () => {
         setIsLoading(false);
         console.log(user);
         authCtx.login(user);
-        navigate('/');
+        navigate(-1 || '/', { replace: true });
       }).catch(err => {
         setIsLoading(false);
         console.log(err);
