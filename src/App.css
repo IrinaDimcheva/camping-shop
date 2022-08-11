@@ -1,6 +1,7 @@
 @import url('https://use.fontawesome.com/releases/v6.1.1/css/all.css');
 
 :root {
+  --clr-blue-400: #5599a2;
   --clr-blue-500: #2c5d63;
   --clr-blue-700: #283739;
   --clr-green-200: #a2c11c;
@@ -11,6 +12,7 @@
   --clr-gray-100: #e9e9e9;
   --clr-gray-150: #e5e5e5;
   --clr-gray-200: #e0e0e0;
+  --clr-gray-400: #a3a0a0;
   /* #f3f1e6 */
   /* #f5f1e0 */
   /* #a6cbd2 */

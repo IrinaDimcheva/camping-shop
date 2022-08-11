@@ -18,15 +18,25 @@ const Header = () => {
           <ul>
             {auth.isLoggedIn && !auth.isAdmin && (
               <li>
+                <NavLink className={(navData) => navData.isActive ? styles.active : ''} to='/profile'>
+                  <i class="fa-solid fa-user"></i>
+                  <sup className={`${styles.badge} ${styles['profile-badge']}`}>2</sup> Profile
+                </NavLink>
+              </li>
+            )}
+            {auth.isLoggedIn && !auth.isAdmin && (
+              <li>
                 <NavLink className={(navData) => navData.isActive ? styles.active : ''} to='/favorites'>
-                  <i className="fa-solid fa-heart"></i>Favorites
+                  <i className="fa-solid fa-heart"></i>
+                  <sup className={`${styles.badge} ${styles['favorites-badge']}`}>2</sup> Favorites
                 </NavLink>
               </li>
             )}
             {auth.isLoggedIn && !auth.isAdmin && (
               <li>
                 <NavLink className={(navData) => navData.isActive ? styles.active : ''} to='/cart'>
-                  <i className="fa-solid fa-cart-shopping"></i>Cart
+                  <i className="fa-solid fa-cart-shopping"></i>
+                  <sup className={`${styles.badge} ${styles['cart-badge']}`}>2</sup> Cart
                 </NavLink>
               </li>
             )}

@@ -45,3 +45,23 @@ a:hover,
 a.active {
   color: var(--clr-green-200);
 }
+
+.badge {
+  padding-inline: 0.1rem;
+  font-size: 0.6rem;
+  color: var(--clr-white);
+  margin-left: -0.38rem;
+}
+
+.cart-badge {
+  background-color: var(--clr-red-400);
+}
+
+.favorites-badge {
+  background-color: var(--clr-green-400);
+}
+
+.profile-badge {
+  background-color: var(--clr-blue-400);
+  margin-left: -0.46rem;
+}

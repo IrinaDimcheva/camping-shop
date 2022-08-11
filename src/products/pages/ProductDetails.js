@@ -10,6 +10,7 @@ const ProductDetails = () => {
   const authCtx = useContext(AuthContext);
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [quantity, setQuantity] = useState(1);
   const params = useParams();
   const navigate = useNavigate();
   const { productId } = params;
@@ -38,6 +39,14 @@ const ProductDetails = () => {
     })
   };
 
+  const incrementHandler = () => {
+    setQuantity(q => q < 5 ? q + 1 : 5);
+  };
+
+  const decrementHandler = () => {
+    setQuantity(q => q > 1 ? q - 1 : 1);
+  };
+
   return (
     <div className='centered'>
       {isLoading && <LoadingSpinner className='centered' />}
@@ -58,9 +67,9 @@ const ProductDetails = () => {
                   <div className={styles.quantity}>
                     <h6 className={styles['quantity-title']}>Quantity</h6>
                     <div className={styles.counter}>
-                      <button className={styles.light}>-</button>
-                      <span>1</span>
-                      <button className={styles.light}>+</button>
+                      <button className={styles.light} onClick={decrementHandler}>-</button>
+                      <span>{quantity}</span>
+                      <button className={styles.light} onClick={incrementHandler}>+</button>
                     </div>
                   </div>
                   <button className='btn btn-primary'>ADD TO CART</button>

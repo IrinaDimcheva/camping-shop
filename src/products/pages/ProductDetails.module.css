@@ -78,6 +78,10 @@
   border: none;
 }
 
+.counter .light:hover {
+  color: var(--clr-gray-400);
+}
+
 .info {
   grid-area: info;
   background-color: var(--clr-gray-50);
