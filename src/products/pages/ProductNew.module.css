@@ -48,5 +48,5 @@ hr {
 }
 
 .error {
-  color: red;
+  color: var(--clr-red-400);
 }

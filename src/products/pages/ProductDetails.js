@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import { getProductById, deleteProduct } from '../../services/product-service';
+import BackToTop from '../../shared/components/UIElements/BackToTop';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import AuthContext from '../../shared/context/auth-context';
 import styles from './ProductDetails.module.css';
@@ -93,6 +94,7 @@ const ProductDetails = () => {
           )}
         </article>
       )}
+      <BackToTop />
     </div>
   );
 }

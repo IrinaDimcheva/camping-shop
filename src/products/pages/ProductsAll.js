@@ -4,6 +4,7 @@ import { getProducts } from '../../services/product-service';
 import ProductList from '../components/ProductList';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import styles from './ProductsAll.module.css';
+import BackToTop from '../../shared/components/UIElements/BackToTop';
 
 const ProductsAll = () => {
   const [products, setProducts] = useState([]);
@@ -22,15 +23,17 @@ const ProductsAll = () => {
   }, []);
 
   return (
-    <div className={`${"centered"} ${styles.container}`}>
-      {isLoading && <LoadingSpinner />}
-      <section>
-        {!isLoading && products.length && (
-          <ProductList items={products} />
-        )}
-      </section>
-      {/* <span className={styles.scroll}><i className="fa-solid fa-arrow-up-to-line"></i></span> */}
-    </div>
+    <>
+      <div className={`${"centered"} ${styles.container}`}>
+        {isLoading && <LoadingSpinner />}
+        <section>
+          {!isLoading && products.length && (
+            <ProductList items={products} />
+          )}
+        </section>
+      </div>
+      <BackToTop />
+    </>
   );
 };
 

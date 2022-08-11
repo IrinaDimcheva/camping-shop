@@ -1,0 +1,14 @@
+.scroll i {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--clr-green-200);
+  font-size: 2rem;
+  position: sticky;
+  bottom: 6rem;
+  left: 95vw;
+  cursor: pointer;
+}
+
+.scroll i:hover {
+  color: var(--clr-green-400);
+}

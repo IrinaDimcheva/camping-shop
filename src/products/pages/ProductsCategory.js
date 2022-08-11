@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getProductsByCategory } from "../../services/product-service";
 import ProductList from "../components/ProductList";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import BackToTop from "../../shared/components/UIElements/BackToTop";
 
 
 const ProductsCategory = () => {
@@ -21,7 +22,7 @@ const ProductsCategory = () => {
       setIsLoading(false);
       console.log(err);
     });
-  }, []);
+  }, [category]);
 
   return (
     <div className={`${"centered"} `}>
@@ -34,6 +35,7 @@ const ProductsCategory = () => {
           <ProductList items={products} />
         )}
       </section>
+      <BackToTop />
     </div>
   );
 };
