@@ -23,7 +23,7 @@ const Cart = props => {
         {cartItems.map(item => <li key={item._id}>{item.name}</li>)}
       </ul>
       <div className={styles.total}>
-        <span>Total Amount</span>
+        <span>Total Price</span>
         <span>36.40</span>
       </div>
       <div className={styles.actions}>
