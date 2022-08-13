@@ -22,6 +22,9 @@ const Login = () => {
     loginService(data)
       .then(user => {
         setIsLoading(false);
+        if (!user._id) {
+          return;
+        }
         console.log(user);
         authCtx.login(user);
         navigate(-1 || '/', { replace: true });

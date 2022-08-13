@@ -2,10 +2,15 @@ import { useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
 import AuthContext from '../context/auth-context';
+import CartContext from '../context/cart-context';
 import styles from './Header.module.css';
 
-const Header = () => {
+const Header = (props) => {
   const auth = useContext(AuthContext);
+  const cartCtx = useContext(CartContext);
+  const cartItemsNumber = cartCtx.items.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
 
   return (
     <header>
@@ -34,10 +39,22 @@ const Header = () => {
             )}
             {auth.isLoggedIn && !auth.isAdmin && (
               <li>
-                <NavLink className={(navData) => navData.isActive ? styles.active : ''} to='/cart'>
+                {/* <NavLink
+                  className={(navData) => navData.isActive ? styles.active : ''}
+                  to='/cart'
+                  onClick={props.onShowCart}>
                   <i className="fa-solid fa-cart-shopping"></i>
                   <sup className={`${styles.badge} ${styles['cart-badge']}`}>2</sup> Cart
-                </NavLink>
+                </NavLink> */}
+                <button
+                  className={styles.link}
+                  onClick={props.onShowCart}>
+                  <i className="fa-solid fa-cart-shopping"></i>
+                  <sup className={`${styles.badge} ${styles['cart-badge']}`}>
+                    {/* {cartCtx.items.length} */}
+                    {cartItemsNumber}
+                  </sup> Cart
+                </button>
               </li>
             )}
             {/* {auth.isLoggedIn && auth.isAdmin && (
