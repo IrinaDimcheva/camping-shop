@@ -73,7 +73,7 @@
 .counter .light {
   font-size: 1.5em;
   color: var(--clr-gray-200);
-  padding: 0rem 1rem;
+  padding: 0rem 1.2rem;
   cursor: pointer;
   border: none;
 }

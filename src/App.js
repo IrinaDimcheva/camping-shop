@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Footer from './shared/components/Footer';
 import Header from './shared/components/Header';
@@ -31,25 +31,24 @@ function App() {
   };
 
   let routes;
-  if (authCtx.isLoggedIn) {
-    routes = (
-      <>
-        <Route path='/' element={<Home />} />
-        <Route path='/products' element={<ProductsAll />} />
-        <Route path='/products/:productId' element={<ProductDetails />} />
-        <Route path='/products/category/:category' element={<ProductsCategory />} />
-      </>
-    );
-  } else if (authCtx.isLoggedIn && authCtx.isAdmin) {
+  if (authCtx.isLoggedIn && authCtx.isAdmin) {
     routes = (
       <>
         <Route path='/' element={<Home />} />
         <Route path='/admin/orders' element={<Orders />} />
-        <Route path='/admin/products/new' element={<ProductNew />} />
+        <Route path='/products/:productId' element={<ProductDetails />} />
+        <Route path='/products/new' element={<ProductNew />} />
+        <Route path='/products' element={<ProductsAll />} />
+        <Route path='/products/category/:category' element={<ProductsCategory />} />
+        <Route path='/products/:productId/edit' element={<ProductEdit />} />
+      </>
+    );
+  } else if (authCtx.isLoggedIn) {
+    routes = (
+      <><Route path='/' element={<Home />} />
         <Route path='/products' element={<ProductsAll />} />
         <Route path='/products/:productId' element={<ProductDetails />} />
         <Route path='/products/category/:category' element={<ProductsCategory />} />
-        <Route path='/products/:productId/edit' element={<ProductEdit />} />
       </>
     );
   } else {
@@ -73,16 +72,18 @@ function App() {
         <main>
           <div className="container">
             <Routes>
-              {routes}
-              {/* <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/products' element={<ProductsAll />} />
-            <Route path='/products/:productId' element={<ProductDetails />} />
-            <Route path='/products/category/:category' element={<ProductsCategory />} />
-            <Route path='/products/:productId/edit' element={<ProductEdit />} />
-            <Route path='/products/new' element={<ProductNew />} />
-            <Route path='/admin/orders' element={<Orders />} /> */}
+              {/* {routes} */}
+              <Route path='/' element={<Home />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='/products' element={<ProductsAll />} />
+              <Route path='/products/:productId' element={<ProductDetails />} />
+              <Route path='/products/category/:category' element={<ProductsCategory />} />
+              <Route path='/products/:productId/edit' element={<ProductEdit />} />
+              <Route path='/products/new' element={<ProductNew />} />
+              {/* <Route path='/cart' element={<Cart />} /> */}
+              <Route path='/admin/orders' element={<Orders />} />
+              <Route path='*' element={<Navigate to='/' />} />
             </Routes>
           </div>
         </main>
