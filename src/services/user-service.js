@@ -6,13 +6,17 @@ const getCart = () => {
   }).then(res => res.json());
 };
 
-const addToCart = (productId) => {
+const addToCart = (productId, amount) => {
+  const data = {
+    productId,
+    amount
+  };
   return fetch(`${baseUrl}/cart/add`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(productId),
+    body: JSON.stringify(data),
     credentials: 'include'
   }).then(res => res.json());
 };

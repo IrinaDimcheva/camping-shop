@@ -8,9 +8,10 @@ import styles from './Header.module.css';
 const Header = (props) => {
   const auth = useContext(AuthContext);
   const cartCtx = useContext(CartContext);
-  const cartItemsNumber = cartCtx.items.reduce((acc, curr) => {
-    return acc + curr.quantity;
-  }, 0);
+  console.log(cartCtx.items)
+  // const cartItemsNumber = cartCtx.items.reduce((acc, curr) => {
+  //   return acc + curr.quantity;
+  // }, 0);
 
   return (
     <header>
@@ -51,8 +52,8 @@ const Header = (props) => {
                   onClick={props.onShowCart}>
                   <i className="fa-solid fa-cart-shopping"></i>
                   <sup className={`${styles.badge} ${styles['cart-badge']}`}>
-                    {/* {cartCtx.items.length} */}
-                    {cartItemsNumber}
+                    {cartCtx.items.length}
+                    {/* {cartItemsNumber} */}
                   </sup> Cart
                 </button>
               </li>

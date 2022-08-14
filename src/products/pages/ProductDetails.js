@@ -14,8 +14,8 @@ const ProductDetails = () => {
   const cartCtx = useContext(CartContext);
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  // const [quantity, setQuantity] = useState(1);
-  // const quantityInputRef = useRef();
+  const [amount, setAmount] = useState(1);
+  const amountInputRef = useRef();
   const params = useParams();
   const navigate = useNavigate();
   const { productId } = params;
@@ -43,13 +43,13 @@ const ProductDetails = () => {
     })
   };
 
-  // const incrementHandler = () => {
-  //   setQuantity(q => q < 5 ? q + 1 : 5);
-  // };
+  const incrementHandler = () => {
+    setAmount(q => q < 5 ? q + 1 : 5);
+  };
 
-  // const decrementHandler = () => {
-  //   setQuantity(q => q > 1 ? q - 1 : 1);
-  // };
+  const decrementHandler = () => {
+    setAmount(q => q > 1 ? q - 1 : 1);
+  };
 
   // const submitHandler = (event) => {
   //   event.preventDefault();
@@ -64,17 +64,42 @@ const ProductDetails = () => {
   //   })
   // }
 
-  const addToCartHandler = () => {
+  // const addToCartHandler = () => {
+  //   console.log(productId);
+  //   console.log(authCtx)
+  //   if (!authCtx.userId) { return; }
+  //   addToCart({ productId, amount }).then(res => {
+  //     console.log(res);
+  //     if (!res.ok) {
+  //       return;
+  //     }
+  //     cartCtx.addCartItem({
+  //       id: productId,
+  //       name: product.name,
+  //       price: product.price,
+  //       amount: amount
+  //     });
+  //   }).catch(err => {
+  //     console.log(err);
+  //   })
+  // }
+  const submitHandler = (event) => {
+    event.preventDefault();
     console.log(productId);
     console.log(authCtx)
     if (!authCtx.userId) { return; }
-    addToCart({ productId }).then(res => {
+    addToCart(productId, amount).then(res => {
+      // addToCart({ productId, amount }).then(res => {
       console.log(res);
       if (!res.ok) {
         return;
       }
-      cartCtx.addCartItem(productId);
-      cartCtx.items.push(productId);
+      cartCtx.addCartItem({
+        id: productId,
+        name: product.name,
+        price: product.price,
+        amount: amount
+      });
     }).catch(err => {
       console.log(err);
     })
@@ -97,8 +122,8 @@ const ProductDetails = () => {
               </div>
               {!authCtx.isAdmin && (
                 <div className={styles.cart}>
-                  {/* <form onSubmit={submitHandler}> */}
-                  {/* <div className={styles.quantity}>
+                  <form onSubmit={submitHandler}>
+                    <div className={styles.quantity}>
                       <h6 className={styles['quantity-title']}>Quantity</h6>
                       <div className={styles.counter}>
                         <button type='button' className={styles.light} onClick={decrementHandler}>-</button>
@@ -107,15 +132,16 @@ const ProductDetails = () => {
                           min='1'
                           max='5'
                           step='1'
-                          defaultValue={quantity}
-                          ref={quantityInputRef}
+                          value={amount}
+                          // ref={amountInputRef}
                           disabled
                         />
                         <button type='button' className={styles.light} onClick={incrementHandler}>+</button>
                       </div>
-                    </div> */}
-                  <button className='btn btn-primary' onClick={addToCartHandler}>ADD TO CART</button>
-                  {/* </form> */}
+                    </div>
+                    <button className='btn btn-primary'>ADD TO CART</button>
+                    {/* <button className='btn btn-primary' onClick={addToCartHandler}>ADD TO CART</button> */}
+                  </form>
                 </div>
               )}
             </div>
