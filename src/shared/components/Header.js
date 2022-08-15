@@ -51,7 +51,7 @@ const Header = (props) => {
             )} */}
             {auth.isLoggedIn && auth.isAdmin && (
               <li>
-                <NavLink to='/products/new' className={(navData) => navData.isActive ? styles.active : ''}>
+                <NavLink to='/products/product/new' className={(navData) => navData.isActive ? styles.active : ''}>
                   Add Product
                 </NavLink>
               </li>

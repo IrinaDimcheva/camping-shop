@@ -1,24 +1,27 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, Suspense, lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Footer from './shared/components/Footer';
 import Header from './shared/components/Header';
 import Cart from './user/components/Cart';
-import Orders from './admin/Orders';
-import ProductsAll from './products/pages/ProductsAll';
-import ProductsCategory from './products/pages/ProductsCategory';
-import ProductNew from './products/pages/ProductNew';
-import ProductDetails from './products/pages/ProductDetails';
-import Home from './products/pages/Home';
-import Login from './user/pages/Login';
-import Register from './user/pages/Register';
-import ProductEdit from './products/pages/ProductUpdate';
 import AuthContext from './shared/context/auth-context';
 import { AuthContextProvider } from './shared/context/auth-context';
+import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
 import './App.css';
 
+const ProductsAll = lazy(() => import('./products/pages/ProductsAll'));
+const ProductsCategory = lazy(() => import('./products/pages/ProductsCategory'));
+const ProductNew = lazy(() => import('./products/pages/ProductNew'));
+const ProductDetails = lazy(() => import('./products/pages/ProductDetails'));
+const Home = lazy(() => import('./products/pages/Home'));
+const Login = lazy(() => import('./user/pages/Login'));
+const Register = lazy(() => import('./user/pages/Register'));
+const ProductEdit = lazy(() => import('./products/pages/ProductUpdate'));
+const Orders = lazy(() => import('./admin/Orders'));
+
+
 function App() {
-  const authCtx = useContext(AuthContext);
+  const { isLoggedIn, isAdmin } = useContext(AuthContext);
   const [cartIsShown, setCartIsShown] = useState(false);
 
   const showCartHandler = () => {
@@ -29,59 +32,32 @@ function App() {
     setCartIsShown(false);
   };
 
-  let routes;
-  if (authCtx.isLoggedIn && authCtx.isAdmin) {
-    routes = (
-      <>
-        <Route path='/' element={<Home />} />
-        <Route path='/admin/orders' element={<Orders />} />
-        <Route path='/products/:productId' element={<ProductDetails />} />
-        <Route path='/products/new' element={<ProductNew />} />
-        <Route path='/products' element={<ProductsAll />} />
-        <Route path='/products/category/:category' element={<ProductsCategory />} />
-        <Route path='/products/:productId/edit' element={<ProductEdit />} />
-      </>
-    );
-  } else if (authCtx.isLoggedIn) {
-    routes = (
-      <><Route path='/' element={<Home />} />
-        <Route path='/products' element={<ProductsAll />} />
-        <Route path='/products/:productId' element={<ProductDetails />} />
-        <Route path='/products/category/:category' element={<ProductsCategory />} />
-      </>
-    );
-  } else {
-    routes = (
-      <>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/products' element={<ProductsAll />} />
-        <Route path='/products/:productId' element={<ProductDetails />} />
-        <Route path='/products/category/:category' element={<ProductsCategory />} />
-      </>
-    );
-  }
-
   return (
     <AuthContextProvider>
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
       <main>
-        <div className="container">
-          <Routes>
-            {/* {routes} */}
-            <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/products' element={<ProductsAll />} />
-            <Route path='/products/:productId' element={<ProductDetails />} />
-            <Route path='/products/category/:category' element={<ProductsCategory />} />
-            <Route path='/products/:productId/edit' element={<ProductEdit />} />
-            <Route path='/products/new' element={<ProductNew />} />
-            <Route path='/admin/orders' element={<Orders />} />
-            <Route path='*' element={<Navigate to='/' />} />
-          </Routes>
+        <div className="container centered">
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/products' element={<ProductsAll />} />
+              <Route path='/products/:productId' element={<ProductDetails />} />
+              <Route path='/products/category/:category' element={<ProductsCategory />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+              {isLoggedIn && isAdmin && (
+                <Route path='/products/:productId/edit' element={<ProductEdit />} />
+              )}
+              {isLoggedIn && isAdmin && (
+                <Route path='/products/product/new' exact element={<ProductNew />} />
+              )}
+              {isLoggedIn && isAdmin && (
+                <Route path='/admin/orders' element={<Orders />} />
+              )}
+              <Route path='*' element={<Navigate to='/' />} />
+            </Routes>
+          </Suspense>
         </div>
       </main>
       <Footer />

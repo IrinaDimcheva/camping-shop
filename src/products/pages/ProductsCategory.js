@@ -15,7 +15,6 @@ const ProductsCategory = () => {
   useEffect(() => {
     setIsLoading(true);
     getProductsByCategory(category).then(data => {
-      console.log(data);
       setProducts(data.products);
       setIsLoading(false);
     }).catch(err => {
