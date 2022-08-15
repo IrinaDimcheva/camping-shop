@@ -15,7 +15,6 @@ const ProductsAll = () => {
     getProducts().then(result => {
       setProducts(result.products);
       setIsLoading(false);
-      // console.log(result.products);
     }).catch(err => {
       console.log(err);
       setIsLoading(false);

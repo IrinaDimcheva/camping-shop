@@ -42,7 +42,7 @@ const Cart = props => {
   return (
     <Modal onClose={props.onClose} className={styles.modal}>
       {isLoading && <LoadingSpinner asOverlay />}
-      {!cartItems && !isLoading && <h2>No products added to your cart.</h2>}
+      {!total && !isLoading && <h3>No products added to your cart.</h3>}
       <ul className={styles['cart-items']}>
         {cartItems && !isLoading && (cartItems.map(item =>
           <CartItem
@@ -61,7 +61,7 @@ const Cart = props => {
       </div>
       <div className={styles.actions}>
         <button className='btn btn-alt' onClick={props.onClose}>Close</button>
-        {!!total && <button className='btn btn-primary'>Order</button>}
+        {!!total && !isLoading && <button className='btn btn-primary'>Order</button>}
       </div>
     </Modal>
   );

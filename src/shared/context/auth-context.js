@@ -7,8 +7,9 @@ const AuthContext = createContext({
   isLoggedIn: false,
   user: null,
   isAdmin: false,
+  cartCount: 0,
   login: (data) => { },
-  logout: () => { }
+  logout: () => { },
 });
 
 export const AuthContextProvider = props => {
@@ -48,7 +49,7 @@ export const AuthContextProvider = props => {
     isAdmin,
     isLoggedIn,
     login: loginHandler,
-    logout: logoutHandler
+    logout: logoutHandler,
   };
 
   console.log(

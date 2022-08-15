@@ -15,7 +15,6 @@ import Register from './user/pages/Register';
 import ProductEdit from './products/pages/ProductUpdate';
 import AuthContext from './shared/context/auth-context';
 import { AuthContextProvider } from './shared/context/auth-context';
-import { CartProvider } from './shared/context/cart-context';
 import './App.css';
 
 function App() {
@@ -66,29 +65,26 @@ function App() {
 
   return (
     <AuthContextProvider>
-      <CartProvider>
-        {cartIsShown && <Cart onClose={hideCartHandler} />}
-        <Header onShowCart={showCartHandler} />
-        <main>
-          <div className="container">
-            <Routes>
-              {/* {routes} */}
-              <Route path='/' element={<Home />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register />} />
-              <Route path='/products' element={<ProductsAll />} />
-              <Route path='/products/:productId' element={<ProductDetails />} />
-              <Route path='/products/category/:category' element={<ProductsCategory />} />
-              <Route path='/products/:productId/edit' element={<ProductEdit />} />
-              <Route path='/products/new' element={<ProductNew />} />
-              {/* <Route path='/cart' element={<Cart />} /> */}
-              <Route path='/admin/orders' element={<Orders />} />
-              <Route path='*' element={<Navigate to='/' />} />
-            </Routes>
-          </div>
-        </main>
-        <Footer />
-      </CartProvider>
+      {cartIsShown && <Cart onClose={hideCartHandler} />}
+      <Header onShowCart={showCartHandler} />
+      <main>
+        <div className="container">
+          <Routes>
+            {/* {routes} */}
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/products' element={<ProductsAll />} />
+            <Route path='/products/:productId' element={<ProductDetails />} />
+            <Route path='/products/category/:category' element={<ProductsCategory />} />
+            <Route path='/products/:productId/edit' element={<ProductEdit />} />
+            <Route path='/products/new' element={<ProductNew />} />
+            <Route path='/admin/orders' element={<Orders />} />
+            <Route path='*' element={<Navigate to='/' />} />
+          </Routes>
+        </div>
+      </main>
+      <Footer />
     </AuthContextProvider>
   );
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import { getProductById, deleteProduct } from '../../services/product-service';
@@ -6,16 +6,13 @@ import { addToCart } from '../../services/user-service';
 import BackToTop from '../../shared/components/UIElements/BackToTop';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import AuthContext from '../../shared/context/auth-context';
-import CartContext from '../../shared/context/cart-context';
 import styles from './ProductDetails.module.css';
 
 const ProductDetails = () => {
   const authCtx = useContext(AuthContext);
-  const cartCtx = useContext(CartContext);
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState(1);
-  const amountInputRef = useRef();
   const params = useParams();
   const navigate = useNavigate();
   const { productId } = params;
@@ -54,24 +51,16 @@ const ProductDetails = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     console.log(productId);
-    console.log(authCtx)
     if (!authCtx.userId) { return; }
     addToCart(productId, amount).then(res => {
       console.log(res);
       if (!res.ok) {
         return;
       }
-      cartCtx.addItem({
-        id: productId,
-        name: product.name,
-        price: product.price,
-        amount: amount
-      });
-
     }).catch(err => {
       console.log(err);
-    })
-  }
+    });
+  };
 
   return (
     <div className='centered'>
@@ -101,14 +90,12 @@ const ProductDetails = () => {
                           max='5'
                           step='1'
                           value={amount}
-                          // ref={amountInputRef}
                           disabled
                         />
                         <button type='button' className={styles.light} onClick={incrementHandler}>+</button>
                       </div>
                     </div>
                     <button className='btn btn-primary'>ADD TO CART</button>
-                    {/* <button className='btn btn-primary' onClick={addToCartHandler}>ADD TO CART</button> */}
                   </form>
                 </div>
               )}
