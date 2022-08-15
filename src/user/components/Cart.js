@@ -14,7 +14,6 @@ const Cart = props => {
   useEffect(() => {
     setIsLoading(true);
     getCart().then(data => {
-      console.log(data);
       setIsLoading(false);
       setTotal(data.reduce((acc, curr) => {
         return acc += curr.productId.price * curr.amount;
@@ -29,15 +28,12 @@ const Cart = props => {
   const removeHandler = (productId) => {
     removeFromCart({ productId }).then(res => {
       getCart().then(data => {
-        console.log(data);
         setIsLoading(false);
         setTotal(data.reduce((acc, curr) => {
           return acc += curr.productId.price * curr.amount;
         }, 0));
         setCartItems(data);
-      })
-      setCartItems(cartItems => cartItems.filter(i => i.productId === productId));
-      console.log(res);
+      });
     }).catch(err => {
       console.log(err);
     });
@@ -65,7 +61,7 @@ const Cart = props => {
       </div>
       <div className={styles.actions}>
         <button className='btn btn-alt' onClick={props.onClose}>Close</button>
-        <button className='btn btn-primary'>Order</button>
+        {!!total && <button className='btn btn-primary'>Order</button>}
       </div>
     </Modal>
   );
