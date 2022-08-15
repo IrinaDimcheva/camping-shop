@@ -51,55 +51,23 @@ const ProductDetails = () => {
     setAmount(q => q > 1 ? q - 1 : 1);
   };
 
-  // const submitHandler = (event) => {
-  //   event.preventDefault();
-  //   // addToCart(product._id, quantityInputRef).then(res => {
-  //   addToCart(product._id).then(res => {
-  //     console.log(res);
-  //     if (!res.ok) {
-  //       return;
-  //     }
-  //   }).catch(err => {
-  //     console.log(err);
-  //   })
-  // }
-
-  // const addToCartHandler = () => {
-  //   console.log(productId);
-  //   console.log(authCtx)
-  //   if (!authCtx.userId) { return; }
-  //   addToCart({ productId, amount }).then(res => {
-  //     console.log(res);
-  //     if (!res.ok) {
-  //       return;
-  //     }
-  //     cartCtx.addCartItem({
-  //       id: productId,
-  //       name: product.name,
-  //       price: product.price,
-  //       amount: amount
-  //     });
-  //   }).catch(err => {
-  //     console.log(err);
-  //   })
-  // }
   const submitHandler = (event) => {
     event.preventDefault();
     console.log(productId);
     console.log(authCtx)
     if (!authCtx.userId) { return; }
     addToCart(productId, amount).then(res => {
-      // addToCart({ productId, amount }).then(res => {
       console.log(res);
       if (!res.ok) {
         return;
       }
-      cartCtx.addCartItem({
+      cartCtx.addItem({
         id: productId,
         name: product.name,
         price: product.price,
         amount: amount
       });
+
     }).catch(err => {
       console.log(err);
     })

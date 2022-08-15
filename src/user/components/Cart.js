@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 
-import { getCart } from '../../services/user-service';
+import { getCart, removeFromCart } from '../../services/user-service';
 import Modal from '../../shared/components/UIElements/Modal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import CartItem from './CartItem';
 import styles from './Cart.module.css';
 
 const Cart = props => {
@@ -25,13 +26,36 @@ const Cart = props => {
     });
   }, []);
 
+  const removeHandler = (productId) => {
+    removeFromCart({ productId }).then(res => {
+      getCart().then(data => {
+        console.log(data);
+        setIsLoading(false);
+        setTotal(data.reduce((acc, curr) => {
+          return acc += curr.productId.price * curr.amount;
+        }, 0));
+        setCartItems(data);
+      })
+      setCartItems(cartItems => cartItems.filter(i => i.productId === productId));
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
   return (
-    <Modal onClose={props.onClose}>
+    <Modal onClose={props.onClose} className={styles.modal}>
       {isLoading && <LoadingSpinner asOverlay />}
       {!cartItems && !isLoading && <h2>No products added to your cart.</h2>}
       <ul className={styles['cart-items']}>
         {cartItems && !isLoading && (cartItems.map(item =>
-          <li key={item._id}>{item.productId.name} {item.amount} x {item.productId.price.toFixed(2)}</li>
+          <CartItem
+            key={item._id}
+            name={item.productId.name}
+            amount={item.amount}
+            price={item.productId.price}
+            onRemove={removeHandler}
+          />
         )
         )}
       </ul>

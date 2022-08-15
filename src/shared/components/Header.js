@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
 import AuthContext from '../context/auth-context';
@@ -7,10 +7,10 @@ import styles from './Header.module.css';
 
 const Header = (props) => {
   const auth = useContext(AuthContext);
-  const cartCtx = useContext(CartContext);
-  console.log(cartCtx.items)
+  // const cartCtx = useContext(CartContext);
+  // console.log(cartCtx)
   // const cartItemsNumber = cartCtx.items.reduce((acc, curr) => {
-  //   return acc + curr.quantity;
+  //   return acc += curr.amount;
   // }, 0);
 
   return (
@@ -26,7 +26,8 @@ const Header = (props) => {
               <li>
                 <NavLink className={(navData) => navData.isActive ? styles.active : ''} to='/profile'>
                   <i class="fa-solid fa-user"></i>
-                  <sup className={`${styles.badge} ${styles['profile-badge']}`}>2</sup> Profile
+                  {/* <sup className={`${styles.badge} ${styles['profile-badge']}`}>2</sup> */}
+                  Profile
                 </NavLink>
               </li>
             )}
@@ -34,7 +35,8 @@ const Header = (props) => {
               <li>
                 <NavLink className={(navData) => navData.isActive ? styles.active : ''} to='/favorites'>
                   <i className="fa-solid fa-heart"></i>
-                  <sup className={`${styles.badge} ${styles['favorites-badge']}`}>2</sup> Favorites
+                  {/* <sup className={`${styles.badge} ${styles['favorites-badge']}`}>2</sup> */}
+                  Favorites
                 </NavLink>
               </li>
             )}
@@ -51,10 +53,11 @@ const Header = (props) => {
                   className={styles.link}
                   onClick={props.onShowCart}>
                   <i className="fa-solid fa-cart-shopping"></i>
-                  <sup className={`${styles.badge} ${styles['cart-badge']}`}>
+                  {/* <sup className={`${styles.badge} ${styles['cart-badge']}`}>
                     {cartCtx.items.length}
-                    {/* {cartItemsNumber} */}
-                  </sup> Cart
+                  {cartItemsNumber}
+                </sup>  */}
+                  Cart
                 </button>
               </li>
             )}
@@ -94,7 +97,7 @@ const Header = (props) => {
           </ul>
         </nav>
       </div>
-    </header>
+    </header >
   );
 }
 
