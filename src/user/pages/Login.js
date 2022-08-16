@@ -1,19 +1,39 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import AuthContext from '../../shared/context/auth-context';
-import { loginService } from '../../services/auth-service';
+import { loginService, checkAuth } from '../../services/auth-service';
 import styles from './Login.module.css';
 
 const Login = () => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [error, setError] = useState(null);
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     mode: 'onBlur' || 'onChange'
   });
+
+  useEffect(() => {
+    checkAuth().then(user => {
+      console.log(user);
+      setChecked(true);
+      if (!user.message) {
+        authCtx.login(user);
+        navigate(-1);
+        return;
+      }
+    })
+      .catch(err => {
+        console.log(err);
+        navigate('/login');
+      });
+  }, []);
+
+  if (!checked) { return null; }
 
   const onSubmitHandler = (data, event) => {
     event.preventDefault();
@@ -22,6 +42,9 @@ const Login = () => {
     loginService(data)
       .then(user => {
         setIsLoading(false);
+        if (!user.ok) {
+          setError(user.message)
+        }
         if (!user._id) {
           return;
         }
@@ -29,49 +52,52 @@ const Login = () => {
         authCtx.login(user);
         navigate(-1 || '/', { replace: true });
       }).catch(err => {
-        console.log(err);
-        alert(err.message);
+        console.log(err.message);
+        setError(err.message);
       });
-    reset();
+    setError(null);
   };
 
   return (
-    <div className={styles.container}>
-      {isLoading && <LoadingSpinner asOverlay />}
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <p>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder='Email...'
-            {...register('email', {
-              required: 'Email is required.'
-            })}
-          />
-        </p>
-        <p className={styles.error}>{errors.email?.message}</p>
-        <p>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder='Password...'
-            {...register('password', {
-              required: 'Password is required.'
-            })}
-          />
-        </p>
-        <p className={styles.error}>{errors.password?.message}</p>
-        {!isLoading && (
-          <button className="btn btn-primary" type='submit'>Login</button>
-        )}
-      </form>
-      <p>Don't have an account? <Link to='/register' className={styles.link}>Create a new user</Link></p>
-    </div>
+    <>
+      <div className={styles.container}>
+        {isLoading && <LoadingSpinner asOverlay />}
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
+          <p>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder='Email...'
+              {...register('email', {
+                required: 'Email is required.'
+              })}
+            />
+          </p>
+          <p className='error'>{errors.email?.message}</p>
+          <p>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder='Password...'
+              {...register('password', {
+                required: 'Password is required.'
+              })}
+            />
+          </p>
+          <p className='error'>{errors.password?.message}</p>
+          {!!error && <p className='error'>{error}</p>}
+          {!isLoading && (
+            <button className="btn btn-primary" type='submit'>Login</button>
+          )}
+        </form>
+        <p>Don't have an account? <Link to='/register' className={styles.link}>Create a new user</Link></p>
+      </div>
+    </>
   );
 }
 

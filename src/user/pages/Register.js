@@ -11,6 +11,7 @@ const Register = () => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     mode: 'onTouched' || 'onBlur'
   });
@@ -22,6 +23,9 @@ const Register = () => {
     registerService(data)
       .then(user => {
         setIsLoading(false);
+        if (!user.ok) {
+          setError(user.message);
+        }
         if (!user._id) {
           return;
         }
@@ -33,7 +37,7 @@ const Register = () => {
         console.log(err);
         alert(err.message);
       });
-    reset();
+    setError(null);
   };
 
   return (
@@ -99,7 +103,8 @@ const Register = () => {
             })}
           />
         </p>
-        <p className={styles.error}>{errors.password?.message}</p>
+        <p className='error'>{errors.password?.message}</p>
+        {!!error && <p className='error'>{error}</p>}
         {!isLoading && (
           <button type='submit' className="btn btn-primary">Register</button>
         )}

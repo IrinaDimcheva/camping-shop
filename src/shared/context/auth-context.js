@@ -8,7 +8,7 @@ const AuthContext = createContext({
   user: null,
   isAdmin: false,
   cartCount: 0,
-  login: (data) => { },
+  login: (user) => { },
   logout: () => { },
 });
 

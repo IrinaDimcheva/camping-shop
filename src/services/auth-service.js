@@ -28,11 +28,17 @@ const logoutService = () => {
     credentials: 'include'
   }).then(res => res.json())
     .catch(err => console.log(err));
+};
 
+const checkAuth = async () => {
+  return fetch(`${baseUrl}/user/profile`, {
+    credentials: 'include'
+  }).then(res => res.json());
 };
 
 export {
   registerService,
   loginService,
-  logoutService
+  logoutService,
+  checkAuth
 };

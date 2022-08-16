@@ -118,3 +118,7 @@ a {
   min-height: calc(100vh - 10rem);
   /* padding: 1rem; */
 }
+
+.error {
+  color: var(--clr-red-400);
+}

@@ -13,9 +13,11 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [amount, setAmount] = useState(1);
+  const [error, setError] = useState(null);
   const params = useParams();
   const navigate = useNavigate();
   const { productId } = params;
+  let clearId;
 
   useEffect(() => {
     setIsLoading(true);
@@ -26,6 +28,9 @@ const ProductDetails = () => {
       console.log(err);
       setIsLoading(false);
     });
+    return () => {
+      clearTimeout(clearId);
+    }
   }, [productId]);
 
   const deleteHandler = () => {
@@ -53,13 +58,18 @@ const ProductDetails = () => {
     console.log(productId);
     if (!authCtx.userId) { return; }
     addToCart(productId, amount).then(res => {
-      console.log(res);
+      console.log(res.message);
       if (!res.ok) {
+        setError(res.message);
         return;
       }
     }).catch(err => {
       console.log(err);
+      setError(err.message);
     });
+    clearId = setTimeout(() => {
+      setError(null);
+    }, 3000);
   };
 
   return (
@@ -96,6 +106,7 @@ const ProductDetails = () => {
                       </div>
                     </div>
                     <button className='btn btn-primary'>ADD TO CART</button>
+                    {!!error && <p>{error}</p>}
                   </form>
                 </div>
               )}

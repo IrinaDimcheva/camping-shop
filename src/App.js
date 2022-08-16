@@ -1,5 +1,5 @@
-import { useContext, useState, Suspense, lazy } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { useContext, useEffect, useState, Suspense, lazy } from 'react';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 
 import Footer from './shared/components/Footer';
 import Header from './shared/components/Header';
@@ -7,6 +7,7 @@ import Cart from './user/components/Cart';
 import AuthContext from './shared/context/auth-context';
 import { AuthContextProvider } from './shared/context/auth-context';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
+import { checkAuth } from './services/auth-service';
 import './App.css';
 
 const ProductsAll = lazy(() => import('./products/pages/ProductsAll'));
@@ -21,8 +22,28 @@ const Orders = lazy(() => import('./admin/Orders'));
 
 
 function App() {
-  const { isLoggedIn, isAdmin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { isLoggedIn, isAdmin, login } = useContext(AuthContext);
   const [cartIsShown, setCartIsShown] = useState(false);
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    checkAuth().then(user => {
+      console.log(user);
+      login(user);
+      setChecked(true);
+      if (!user.ok) {
+        navigate('/login');
+        return;
+      }
+    })
+      .catch(err => {
+        console.log(err);
+        navigate('/login');
+      });
+  }, []);
+
+  if (!checked) { return null; }
 
   const showCartHandler = () => {
     setCartIsShown(true);
@@ -44,7 +65,7 @@ function App() {
               <Route path='/products' element={<ProductsAll />} />
               <Route path='/products/:productId' element={<ProductDetails />} />
               <Route path='/products/category/:category' element={<ProductsCategory />} />
-              <Route path='/login' element={<Login />} />
+              {!isLoggedIn && <Route path='/login' element={<Login />} />}
               <Route path='/register' element={<Register />} />
               {isLoggedIn && isAdmin && (
                 <Route path='/products/:productId/edit' element={<ProductEdit />} />
