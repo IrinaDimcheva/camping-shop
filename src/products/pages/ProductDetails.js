@@ -37,8 +37,8 @@ const ProductDetails = () => {
     setIsLoading(true);
     deleteProduct(productId).then(deletedProduct => {
       setIsLoading(false);
-      navigate('/products');
       console.log('HERE: ', deletedProduct);
+      navigate('/products');
     }).catch(err => {
       setIsLoading(false);
       console.log(err);
@@ -88,8 +88,8 @@ const ProductDetails = () => {
                 <p>{product.description}</p>
               </div>
               {!authCtx.isAdmin && (
-                <div className={styles.cart}>
-                  <form onSubmit={submitHandler}>
+                <form onSubmit={submitHandler}>
+                  <div className={styles.cart}>
                     <div className={styles.quantity}>
                       <h6 className={styles['quantity-title']}>Quantity</h6>
                       <div className={styles.counter}>
@@ -106,9 +106,9 @@ const ProductDetails = () => {
                       </div>
                     </div>
                     <button className='btn btn-primary'>ADD TO CART</button>
-                    {!!error && <p>{error}</p>}
-                  </form>
-                </div>
+                  </div>
+                  <p className={styles.message}>{!!error && <span>{error}</span>}</p>
+                </form>
               )}
             </div>
             <div className={styles.info}>

@@ -43,6 +43,7 @@
   grid-template-columns: repeat(2, 200px); */
   display: flex;
   flex-wrap: wrap;
+  gap: 5rem;
   align-items: flex-end;
   justify-content: space-between;
   background-color: var(--clr-gray-50);
@@ -104,6 +105,10 @@
 
 .margin {
   margin-right: 1rem;
+}
+
+.message {
+  height: 2.5rem;
 }
 
 @media (min-width: 768px) {

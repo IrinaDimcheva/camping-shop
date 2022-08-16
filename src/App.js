@@ -4,6 +4,7 @@ import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import Footer from './shared/components/Footer';
 import Header from './shared/components/Header';
 import Cart from './user/components/Cart';
+// import Login from './user/pages/Login';
 import AuthContext from './shared/context/auth-context';
 import { AuthContextProvider } from './shared/context/auth-context';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
@@ -67,12 +68,12 @@ function App() {
               <Route path='/products/category/:category' element={<ProductsCategory />} />
               {!isLoggedIn && <Route path='/login' element={<Login />} />}
               <Route path='/register' element={<Register />} />
-              {isLoggedIn && isAdmin && (
-                <Route path='/products/:productId/edit' element={<ProductEdit />} />
-              )}
-              {isLoggedIn && isAdmin && (
-                <Route path='/products/product/new' exact element={<ProductNew />} />
-              )}
+              {/* {isLoggedIn && isAdmin && ( */}
+              <Route path='/products/:productId/edit' element={<ProductEdit />} />
+              {/* // )} */}
+              {/* {isLoggedIn && isAdmin && ( */}
+              <Route path='/products/new' exact element={<ProductNew />} />
+              {/* // )} */}
               {isLoggedIn && isAdmin && (
                 <Route path='/admin/orders' element={<Orders />} />
               )}

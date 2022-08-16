@@ -19,7 +19,7 @@ const Header = (props) => {
             {auth.isLoggedIn && !auth.isAdmin && (
               <li>
                 <NavLink className={(navData) => navData.isActive ? styles.active : ''} to='/profile'>
-                  <i class="fa-solid fa-user"></i>
+                  <i className="fa-solid fa-user"></i>
                   Profile
                 </NavLink>
               </li>
@@ -51,7 +51,7 @@ const Header = (props) => {
             )} */}
             {auth.isLoggedIn && auth.isAdmin && (
               <li>
-                <NavLink to='/products/product/new' className={(navData) => navData.isActive ? styles.active : ''}>
+                <NavLink to='/products/new' className={(navData) => navData.isActive ? styles.active : ''}>
                   Add Product
                 </NavLink>
               </li>

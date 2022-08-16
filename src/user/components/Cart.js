@@ -26,8 +26,10 @@ const Cart = props => {
   }, []);
 
   const removeHandler = (productId) => {
+    console.log(productId);
     removeFromCart({ productId }).then(res => {
       getCart().then(data => {
+        console.log(data);
         setIsLoading(false);
         setTotal(data.reduce((acc, curr) => {
           return acc += curr.productId.price * curr.amount;
@@ -50,6 +52,7 @@ const Cart = props => {
             name={item.productId.name}
             amount={item.amount}
             price={item.productId.price}
+            _id={item._id}
             onRemove={removeHandler}
           />
         )

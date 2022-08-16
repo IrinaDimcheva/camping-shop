@@ -1,6 +1,7 @@
 import styles from './CartItem.module.css';
 
 const CartItem = props => {
+  console.log(props)
   return (
     <li className={styles['cart-item']}>
       <div>
