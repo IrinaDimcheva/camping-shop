@@ -44,10 +44,10 @@ const Cart = props => {
     });
   };
 
-  const orderHandler = () => {
-    setCartIsShown(false);
-    navigate('/order');
-  }
+  // const orderHandler = () => {
+  //   setCartIsShown(false);
+  //   navigate('/order');
+  // }
 
   return (
     <Modal onClose={props.onClose} className={styles.modal}>

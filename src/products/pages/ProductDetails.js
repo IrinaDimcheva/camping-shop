@@ -31,7 +31,7 @@ const ProductDetails = () => {
     return () => {
       clearTimeout(clearId);
     }
-  }, [productId]);
+  }, [productId, clearId]);
 
   const deleteHandler = () => {
     setIsLoading(true);

@@ -1,3 +1,38 @@
+# CampingShop
+
+This is React course project part of my education in SoftUni and has no commercial use. The project itself is an online shop.
+
+## How to use
+
+#### Non-register users
+
+Non-register users have access to home, all products, product categories, can search for products and product details, register, login page.
+
+#### Register users
+
+Register users have access to all products, product categories, can search for products and product details, can logout. Beside that they can add products to cart, remove products from cart, order products, save products to and remove them from favorites page, view user profile page with all their own orders, // write comments to products, update and delete their own comments.
+
+#### Admin
+
+Admin user have access to all products, product categories, can search for products and product details, can logout. Beside that they can create new products, update and delete them, // approve or cancel orders.
+
+## Technology stack
+
+#### Frontend
+- React 18.2.0
+- React Router DOM 6.3.0
+- React Hook Form
+- HTML5
+- CSS3
+
+#### Backend
+- Node.js
+- Express
+- MongoDB Atlas
+- Mongoose
+- jsonwebtoken
+- bcrypt
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -5,6 +40,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm i`
+
+Installs all dependencies
 
 ### `npm start`
 

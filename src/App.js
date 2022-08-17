@@ -20,6 +20,7 @@ const Login = lazy(() => import('./user/pages/Login'));
 const Register = lazy(() => import('./user/pages/Register'));
 const ProductEdit = lazy(() => import('./products/pages/ProductUpdate'));
 const OrderForm = lazy(() => import('./products/pages/OrderForm'));
+const Profile = lazy(() => import('./user/pages/Profile'));
 const Orders = lazy(() => import('./admin/Orders'));
 
 
@@ -43,7 +44,7 @@ function App() {
         console.log(err);
         navigate('/login');
       });
-  }, []);
+  }, [login]);
 
   if (!checked) { return null; }
 
@@ -70,6 +71,7 @@ function App() {
               {!isLoggedIn && <Route path='/login' element={<Login />} />}
               <Route path='/register' element={<Register />} />
               <Route path='/order' element={<OrderForm />} />
+              <Route path='/profile' element={<Profile />} />
               {/* {isLoggedIn && isAdmin && ( */}
               <Route path='/products/:productId/edit' element={<ProductEdit />} />
               {/* // )} */}

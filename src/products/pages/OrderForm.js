@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { getCart } from '../../services/user-service';
+import { createOrder } from '../../services/order-service';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import styles from './ProductNew.module.css';
 
 const OrderForm = () => {
-  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -17,7 +18,9 @@ const OrderForm = () => {
 
   useEffect(() => {
     getCart().then(products => {
+      products = products.map(p => p = { amount: p.amount, productId: p.productId._id, price: p.productId.price });
       console.log(products);
+      setCart(products);
     }).catch(err => {
       console.log(err);
       setError(err.message);
@@ -26,7 +29,19 @@ const OrderForm = () => {
 
   const onSubmitHandler = (data, event) => {
     event.preventDefault();
-  }
+    setIsLoading(true);
+    const orderData = { data, cart }
+    console.log(data, cart);
+    createOrder({ data, cart }).then(order => {
+      setIsLoading(false);
+      console.log(order);
+      // navigate('/profile');
+    }).catch(err => {
+      setIsLoading(false);
+      setError(err.message);
+      console.log(err);
+    });
+  };
 
   return (
     <div className={styles.container}>
@@ -100,8 +115,8 @@ const OrderForm = () => {
             {...register('postal', {
               required: 'Postal code is required.',
               pattern: {
-                value: /^[0-9]{4}/,
-                message: "Postal code should be only digits, 4 symbols long."
+                value: /^[0-9]{4}$/,
+                message: "Postal code should contains only digits, 4 symbols long."
               }
             })}
           />
