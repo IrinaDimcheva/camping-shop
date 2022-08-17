@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { createProduct } from '../../services/product-service';
@@ -9,6 +9,7 @@ import styles from './ProductNew.module.css';
 const ProductNew = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     mode: 'onTouched' || 'onBlur'
   });
@@ -21,11 +22,11 @@ const ProductNew = () => {
         setIsLoading(false);
         console.log(product);
         navigate('/products');
-
       })
       .catch(err => {
         console.log(err);
         setIsLoading(false);
+        setError(err.message);
       });
   };
 
@@ -45,7 +46,7 @@ const ProductNew = () => {
               required: 'Product Name is required',
               minLength: {
                 value: 3,
-                message: 'Product Name should be at least 4 characters.'
+                message: 'Product Name should be at least 3 characters.'
               },
               maxLength: {
                 value: 150,
@@ -162,6 +163,7 @@ const ProductNew = () => {
         {!isLoading && (
           <button className="btn btn-primary">Save</button>
         )}
+        {!!error && <p>{error}</p>}
       </form>
     </div>
   );

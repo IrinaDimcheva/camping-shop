@@ -19,6 +19,7 @@ const Home = lazy(() => import('./products/pages/Home'));
 const Login = lazy(() => import('./user/pages/Login'));
 const Register = lazy(() => import('./user/pages/Register'));
 const ProductEdit = lazy(() => import('./products/pages/ProductUpdate'));
+const OrderForm = lazy(() => import('./products/pages/OrderForm'));
 const Orders = lazy(() => import('./admin/Orders'));
 
 
@@ -68,6 +69,7 @@ function App() {
               <Route path='/products/category/:category' element={<ProductsCategory />} />
               {!isLoggedIn && <Route path='/login' element={<Login />} />}
               <Route path='/register' element={<Register />} />
+              <Route path='/order' element={<OrderForm />} />
               {/* {isLoggedIn && isAdmin && ( */}
               <Route path='/products/:productId/edit' element={<ProductEdit />} />
               {/* // )} */}

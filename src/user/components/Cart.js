@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { getCart, removeFromCart } from '../../services/user-service';
 import Modal from '../../shared/components/UIElements/Modal';
@@ -10,6 +11,8 @@ const Cart = props => {
   const [cartItems, setCartItems] = useState(null);
   const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [cartIsShown, setCartIsShown] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -39,6 +42,11 @@ const Cart = props => {
     }).catch(err => {
       console.log(err);
     });
+  };
+
+  const orderHandler = () => {
+    setCartIsShown(false);
+    navigate('/order');
   }
 
   return (
@@ -64,7 +72,13 @@ const Cart = props => {
       </div>
       <div className={styles.actions}>
         <button className='btn btn-alt' onClick={props.onClose}>Close</button>
-        {!!total && !isLoading && <button className='btn btn-primary'>Order</button>}
+        {!!total && !isLoading && (
+          <button className='btn btn-primary' onClick={props.onClose}>
+            <Link to='/order'>
+              Order
+            </Link>
+          </button>
+        )}
       </div>
     </Modal>
   );
