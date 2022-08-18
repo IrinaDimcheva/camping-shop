@@ -17,7 +17,9 @@ const ProductDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
   const { productId } = params;
+
   let clearId;
+
 
   useEffect(() => {
     setIsLoading(true);
@@ -72,6 +74,12 @@ const ProductDetails = () => {
     }, 3000);
   };
 
+  const navigateHandler = () => {
+    if (!authCtx.isLoggedIn) {
+      navigate('/login')
+    }
+  }
+
   return (
     <div className='centered'>
       {isLoading && <LoadingSpinner className='centered' />}
@@ -105,7 +113,7 @@ const ProductDetails = () => {
                         <button type='button' className={styles.light} onClick={incrementHandler}>+</button>
                       </div>
                     </div>
-                    <button className='btn btn-primary'>ADD TO CART</button>
+                    <button className='btn btn-primary' onClick={navigateHandler}>ADD TO CART</button>
                   </div>
                   <p className={styles.message}>{!!error && <span>{error}</span>}</p>
                 </form>

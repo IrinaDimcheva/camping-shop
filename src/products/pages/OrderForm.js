@@ -45,7 +45,7 @@ const OrderForm = () => {
       clearId = setTimeout(() => {
         setIsHidden(false);
         navigate('/profile');
-      }, 3000);
+      }, 1500);
     }).catch(err => {
       setIsHidden(false);
       setIsLoading(false);
@@ -68,15 +68,7 @@ const OrderForm = () => {
             id="firstName"
             placeholder="First Name..."
             {...register('firstName', {
-              required: 'First Name is required.',
-              // minLength: {
-              //   value: 3,
-              //   message: 'First Name should be at least 3 characters.'
-              // },
-              // maxLength: {
-              //   value: 15,
-              //   message: 'First Name should not be longer than 15 characters.'
-              // }
+              required: 'First Name is required.'
             })}
           />
         </p>
@@ -89,15 +81,7 @@ const OrderForm = () => {
             id="lastName"
             placeholder="Last Name..."
             {...register('lastName', {
-              required: 'Last Name is required.',
-              // minLength: {
-              //   value: 3,
-              //   message: 'Last Name should be at least 3 characters.'
-              // },
-              // maxLength: {
-              //   value: 15,
-              //   message: 'Last Name should not be longer than 15 characters.'
-              // }
+              required: 'Last Name is required.'
             })}
           />
         </p>

@@ -1,29 +1,14 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
+import BackToTop from "../../shared/components/UIElements/BackToTop";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import useFetch from "../../shared/hooks/useFetch";
 import styles from './Profile.module.css';
 
-const Profile = () => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+const baseUrl = 'http://localhost:5000/api';
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetch('http://localhost:5000/api/user/profile', {
-      credentials: 'include'
-    }).then(res => res.json())
-      .then(userData => {
-        setIsLoading(false);
-        setData(userData);
-        console.log(userData);
-      }).catch(err => {
-        console.log(err);
-        setIsLoading(false);
-        setError(err.message);
-      });
-  }, []);
+const Profile = () => {
+  const { data, isLoading, error } = useFetch(`${baseUrl}/user/profile`, { credentials: 'include' });
 
   return (
     <>
@@ -35,20 +20,22 @@ const Profile = () => {
       )}
       {!isLoading && data && (
         <ul className={styles.inner}>
-          {data.orders.map((order) => {
-            return <li key={`${order._id}${order.created_at}`} className={styles.order}>
+          {data.orders.map((order, i) => {
+            return <li key={`${order._id}${i}`} className={styles.order}>
+              <div className={styles.date}>Created at: {new Date(order.created_at).toLocaleDateString()}</div>
+
               <h2>Order Status: {order.status}</h2>
-              <div className={styles.inner}>
-                {order.products.map(product => {
-                  return <div className={styles['order-item']}>
+              <ul className={styles.inner}>
+                {order.products.map((product, i) => {
+                  return <li key={`${i}100`} className={styles['order-item']}>
                     <h3>{product.name}</h3>
                     <div className={styles.summary}>
                       <span className={styles.price}>{product.price.toFixed(2)} BGN</span>
                       <span className={styles.amount}>x {product.amount}</span>
                     </div>
-                  </div>
+                  </li>
                 })}
-              </div>
+              </ul>
               <div className={styles.total}>
                 <span>Total Price</span>
                 <span>{order.totalPrice.toFixed(2)} BGN</span>
@@ -57,6 +44,7 @@ const Profile = () => {
           })}
         </ul>
       )}
+      <BackToTop />
     </>
   );
 };

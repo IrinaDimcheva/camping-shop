@@ -4,7 +4,6 @@ import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import Footer from './shared/components/Footer';
 import Header from './shared/components/Header';
 import Cart from './user/components/Cart';
-// import Login from './user/pages/Login';
 import AuthContext from './shared/context/auth-context';
 import { AuthContextProvider } from './shared/context/auth-context';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';

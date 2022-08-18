@@ -28,6 +28,10 @@
   list-style: none;
 }
 
+.date {
+  text-align: right;
+}
+
 .summary {
   margin-left: 3rem;
   width: 10rem;
