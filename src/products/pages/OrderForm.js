@@ -8,35 +8,46 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import styles from './ProductNew.module.css';
 
 const OrderForm = () => {
-  const [cart, setCart] = useState([]);
+  const [order, setOrder] = useState([]);
+  const [isHidden, setIsHidden] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'onTouched' || 'onBlur'
   });
+  let clearId;
 
   useEffect(() => {
     getCart().then(products => {
-      products = products.map(p => p = { amount: p.amount, productId: p.productId._id, price: p.productId.price });
+      products = products.map(p => p = { amount: p.amount, productId: p.productId._id, price: p.productId.price, name: p.productId.name, imageUrl: p.productId.imageUrl });
       console.log(products);
-      setCart(products);
+      setOrder(products);
     }).catch(err => {
       console.log(err);
       setError(err.message);
+    });
+
+    return (() => {
+      clearTimeout(clearId);
     });
   }, []);
 
   const onSubmitHandler = (data, event) => {
     event.preventDefault();
     setIsLoading(true);
-    const orderData = { data, cart }
-    console.log(data, cart);
-    createOrder({ data, cart }).then(order => {
+    const orderData = { data, order }
+    console.log(data, order);
+    setIsHidden(true);
+    createOrder({ data, order }).then((res) => {
+      setError(res.message);
       setIsLoading(false);
-      console.log(order);
-      // navigate('/profile');
+      clearId = setTimeout(() => {
+        setIsHidden(false);
+        navigate('/profile');
+      }, 3000);
     }).catch(err => {
+      setIsHidden(false);
       setIsLoading(false);
       setError(err.message);
       console.log(err);
@@ -136,7 +147,7 @@ const OrderForm = () => {
         </p>
         <p className={styles.error}>{errors.city?.message}</p>
         <p>Check your data and hit submit button to order the products.</p>
-        {!isLoading && (
+        {!isLoading && !isHidden && (
           <button className="btn btn-primary">Submit</button>
         )}
         {!!error && <p>{error}</p>}
