@@ -1,11 +1,6 @@
 import { Link } from 'react-router-dom';
 
 import styles from './Categories.module.css';
-// import campingEquipment from '../images/Camping-equipment.png';
-// import campingEquipment from '../../images/camping-equipment.jpg';
-// import tent from '../../images/tent.jpg';
-// import accessories from '../../images/accessories.jpg';
-// import sleepingBags from '../../images/sleeping-bags.jpg';
 
 const Categories = () => {
   return (

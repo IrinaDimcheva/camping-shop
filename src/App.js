@@ -14,13 +14,14 @@ const ProductsAll = lazy(() => import('./products/pages/ProductsAll'));
 const ProductsCategory = lazy(() => import('./products/pages/ProductsCategory'));
 const ProductNew = lazy(() => import('./products/pages/ProductNew'));
 const ProductDetails = lazy(() => import('./products/pages/ProductDetails'));
-const Home = lazy(() => import('./products/pages/Home'));
+const Home = lazy(() => import('./shared/pages/Home'));
 const Login = lazy(() => import('./user/pages/Login'));
 const Register = lazy(() => import('./user/pages/Register'));
 const ProductEdit = lazy(() => import('./products/pages/ProductUpdate'));
 const OrderForm = lazy(() => import('./products/pages/OrderForm'));
 const Profile = lazy(() => import('./user/pages/Profile'));
 const Orders = lazy(() => import('./admin/Orders'));
+const FOF = lazy(() => import('./shared/pages/FOF'));
 
 
 function App() {
@@ -80,7 +81,8 @@ function App() {
               {isLoggedIn && isAdmin && (
                 <Route path='/admin/orders' element={<Orders />} />
               )}
-              <Route path='*' element={<Navigate to='/' />} />
+              <Route path='*' element={<FOF />} />
+              {/* <Route path='*' element={<Navigate to='/' />} /> */}
             </Routes>
           </Suspense>
         </div>
