@@ -66,5 +66,5 @@ export {
   removeFromCart,
   getFavorites,
   addToFavorites,
-  removeFromFavorites
+  removeFromFavorites,
 };

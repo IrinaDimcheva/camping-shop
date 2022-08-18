@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
+import { getProfile } from '../../services/auth-service';
 import { getProductById, deleteProduct } from '../../services/product-service';
-import { addToCart } from '../../services/user-service';
+import { addToCart, addToFavorites, removeFromFavorites } from '../../services/user-service';
 import BackToTop from '../../shared/components/UIElements/BackToTop';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import AuthContext from '../../shared/context/auth-context';
@@ -12,14 +13,13 @@ const ProductDetails = () => {
   const authCtx = useContext(AuthContext);
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [inFavorites, setInFavorites] = useState(null);
   const [amount, setAmount] = useState(1);
   const [error, setError] = useState(null);
   const params = useParams();
   const navigate = useNavigate();
   const { productId } = params;
-
   let clearId;
-
 
   useEffect(() => {
     setIsLoading(true);
@@ -27,63 +27,59 @@ const ProductDetails = () => {
       setIsLoading(false);
       setProduct(product);
     }).catch(err => {
-      console.log(err);
       setIsLoading(false);
+      setError(err.message);
     });
-    return () => {
-      clearTimeout(clearId);
+
+    return () => clearTimeout(clearId);
+  }, [productId, clearId, inFavorites]);
+
+  useEffect(() => {
+    getProfile().then(user => {
+      setInFavorites(!!user?.favorites?.filter(p => p._id === productId).length);
+    })
+  }, []);
+
+  const favoritesHandler = () => {
+    if (!authCtx.isLoggedIn) { navigate('/login'); }
+    if (inFavorites) {
+      removeFromFavorites({ productId }).then(() => setInFavorites(null)).catch(err => setError(err.message));
+      return;
     }
-  }, [productId, clearId]);
+    addToFavorites({ productId }).then(() => setInFavorites(!!productId)).catch(err => setError(err.message));
+  };
 
   const deleteHandler = () => {
     setIsLoading(true);
-    deleteProduct(productId).then(deletedProduct => {
+    deleteProduct(productId).then(() => {
       setIsLoading(false);
-      console.log('HERE: ', deletedProduct);
       navigate('/products');
     }).catch(err => {
       setIsLoading(false);
-      console.log(err);
-    })
+      setError(err.message);
+    });
   };
 
-  const incrementHandler = () => {
-    setAmount(q => q < 5 ? q + 1 : 5);
-  };
-
-  const decrementHandler = () => {
-    setAmount(q => q > 1 ? q - 1 : 1);
-  };
+  const incrementHandler = () => setAmount(q => q < 5 ? q + 1 : 5);
+  const decrementHandler = () => setAmount(q => q > 1 ? q - 1 : 1);
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(productId);
-    if (!authCtx.userId) { return; }
+    if (!authCtx.userId) { navigate('/login'); }
     addToCart(productId, amount).then(res => {
-      console.log(res.message);
       if (!res.ok) {
         setError(res.message);
         return;
       }
-    }).catch(err => {
-      console.log(err);
-      setError(err.message);
-    });
-    clearId = setTimeout(() => {
-      setError(null);
-    }, 3000);
-  };
+    }).catch(err => setError(err.message));
 
-  const navigateHandler = () => {
-    if (!authCtx.isLoggedIn) {
-      navigate('/login')
-    }
-  }
+    clearId = setTimeout(() => { setError(null); }, 3000);
+  };
 
   return (
     <div className='centered'>
       {isLoading && <LoadingSpinner className='centered' />}
-      {product && (
+      {product && inFavorites !== null && (
         <article>
           <div className={styles.wrapper}>
             <div className={styles.media}>
@@ -96,35 +92,32 @@ const ProductDetails = () => {
                 <p>{product.description}</p>
               </div>
               {!authCtx.isAdmin && (
-                <form onSubmit={submitHandler}>
-                  <div className={styles.cart}>
-                    <div className={styles.quantity}>
-                      <h6 className={styles['quantity-title']}>Quantity</h6>
-                      <div className={styles.counter}>
-                        <button type='button' className={styles.light} onClick={decrementHandler}>-</button>
-                        <input
-                          type="number"
-                          min='1'
-                          max='5'
-                          step='1'
-                          value={amount}
-                          disabled
-                        />
-                        <button type='button' className={styles.light} onClick={incrementHandler}>+</button>
+                <div className={styles.cart}>
+                  <form onSubmit={submitHandler}>
+                    <div className={styles['cart-inner']}>
+                      <div className={styles.quantity}>
+                        <h6 className={styles['quantity-title']}>Quantity</h6>
+                        <div className={styles.counter}>
+                          <button type='button' className={styles.light} onClick={decrementHandler}>-</button>
+                          <input type="number" min='1' max='5' step='1' value={amount} disabled />
+                          <button type='button' className={styles.light} onClick={incrementHandler}>+</button>
+                        </div>
                       </div>
+                      <button className='btn btn-primary'>ADD TO CART</button>
                     </div>
-                    <button className='btn btn-primary' onClick={navigateHandler}>ADD TO CART</button>
-                  </div>
+                  </form>
                   <p className={styles.message}>{!!error && <span>{error}</span>}</p>
-                </form>
+                  <button className='btn-link' type='submit' onClick={favoritesHandler}>
+                    <i className="fa-solid fa-heart"></i>
+                    {inFavorites ? ' Remove from favorites' : ' Add to Favorites'}
+                  </button>
+                </div>
               )}
             </div>
             <div className={styles.info}>
               <h3>Product Information</h3>
               <ul className={styles['info-list']}>
-                {product.info?.map((item, i) => {
-                  return <li className={styles['info-item']} key={i}>{item}</li>
-                })}
+                {product.info?.map((item, i) => <li className={styles['info-item']} key={i}>{item}</li>)}
               </ul>
             </div>
           </div>

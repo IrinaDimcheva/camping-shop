@@ -39,11 +39,9 @@
 }
 
 .cart {
-  /* display: grid;
-  grid-template-columns: repeat(2, 200px); */
   display: flex;
   flex-wrap: wrap;
-  gap: 5rem;
+  gap: 1rem;
   align-items: flex-end;
   justify-content: space-between;
   background-color: var(--clr-gray-50);
@@ -52,7 +50,15 @@
   margin-top: 3em;
 }
 
-.cart > button {
+.cart-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cart-inner > button {
   margin-bottom: 0;
 }
 

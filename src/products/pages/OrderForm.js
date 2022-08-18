@@ -31,7 +31,7 @@ const OrderForm = () => {
     return (() => {
       clearTimeout(clearId);
     });
-  }, []);
+  }, [clearId]);
 
   const onSubmitHandler = (data, event) => {
     event.preventDefault();

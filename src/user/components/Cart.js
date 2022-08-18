@@ -11,8 +11,7 @@ const Cart = props => {
   const [cartItems, setCartItems] = useState(null);
   const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [cartIsShown, setCartIsShown] = useState(true);
-  const navigate = useNavigate();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -29,6 +28,7 @@ const Cart = props => {
   }, []);
 
   const removeHandler = (productId) => {
+    setIsLoading(true);
     console.log(productId);
     removeFromCart({ productId }).then(res => {
       getCart().then(data => {
@@ -40,14 +40,10 @@ const Cart = props => {
         setCartItems(data);
       });
     }).catch(err => {
-      console.log(err);
+      setIsLoading(false);
+      setError(err.message);
     });
   };
-
-  // const orderHandler = () => {
-  //   setCartIsShown(false);
-  //   navigate('/order');
-  // }
 
   return (
     <Modal onClose={props.onClose} className={styles.modal}>
@@ -80,6 +76,7 @@ const Cart = props => {
           </button>
         )}
       </div>
+      {!!error && <p>{error}</p>}
     </Modal>
   );
 };

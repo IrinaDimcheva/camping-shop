@@ -7,7 +7,7 @@ import Cart from './user/components/Cart';
 import AuthContext from './shared/context/auth-context';
 import { AuthContextProvider } from './shared/context/auth-context';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
-import { checkAuth } from './services/auth-service';
+import { getProfile } from './services/auth-service';
 import './App.css';
 
 const ProductsAll = lazy(() => import('./products/pages/ProductsAll'));
@@ -19,6 +19,7 @@ const Login = lazy(() => import('./user/pages/Login'));
 const Register = lazy(() => import('./user/pages/Register'));
 const ProductEdit = lazy(() => import('./products/pages/ProductUpdate'));
 const OrderForm = lazy(() => import('./products/pages/OrderForm'));
+const Favorites = lazy(() => import('./user/pages/Favorites'));
 const Profile = lazy(() => import('./user/pages/Profile'));
 const Orders = lazy(() => import('./admin/Orders'));
 const FOF = lazy(() => import('./shared/pages/FOF'));
@@ -26,12 +27,12 @@ const FOF = lazy(() => import('./shared/pages/FOF'));
 
 function App() {
   const navigate = useNavigate();
-  const { isLoggedIn, isAdmin, login } = useContext(AuthContext);
+  const { user, isAdmin, login } = useContext(AuthContext);
   const [cartIsShown, setCartIsShown] = useState(false);
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    checkAuth().then(user => {
+    getProfile().then(user => {
       console.log(user);
       login(user);
       setChecked(true);
@@ -68,19 +69,20 @@ function App() {
               <Route path='/products' element={<ProductsAll />} />
               <Route path='/products/:productId' element={<ProductDetails />} />
               <Route path='/products/category/:category' element={<ProductsCategory />} />
-              {!isLoggedIn && <Route path='/login' element={<Login />} />}
+              {!user && <Route path='/login' element={<Login />} />}
               <Route path='/register' element={<Register />} />
               <Route path='/order' element={<OrderForm />} />
               <Route path='/profile' element={<Profile />} />
+              <Route path='/favorites' element={<Favorites />} />
               {/* {isLoggedIn && isAdmin && ( */}
               <Route path='/products/:productId/edit' element={<ProductEdit />} />
               {/* // )} */}
               {/* {isLoggedIn && isAdmin && ( */}
               <Route path='/products/new' exact element={<ProductNew />} />
               {/* // )} */}
-              {isLoggedIn && isAdmin && (
-                <Route path='/admin/orders' element={<Orders />} />
-              )}
+              {/* {user && isAdmin && ( */}
+              <Route path='/admin/orders' element={<Orders />} />
+              {/* )} */}
               <Route path='*' element={<FOF />} />
               {/* <Route path='*' element={<Navigate to='/' />} /> */}
             </Routes>

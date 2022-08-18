@@ -1,14 +1,28 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getProfile } from "../../services/auth-service";
 
 import BackToTop from "../../shared/components/UIElements/BackToTop";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import useFetch from "../../shared/hooks/useFetch";
 import styles from './Profile.module.css';
 
-const baseUrl = 'http://localhost:5000/api';
-
 const Profile = () => {
-  const { data, isLoading, error } = useFetch(`${baseUrl}/user/profile`, { credentials: 'include' });
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    getProfile().then(userData => {
+      setIsLoading(false);
+      setData(userData);
+      console.log(userData);
+    }).catch(err => {
+      console.log(err);
+      setIsLoading(false);
+      setError(err.message);
+    });
+  }, []);
 
   return (
     <>
@@ -23,7 +37,6 @@ const Profile = () => {
           {data.orders.map((order, i) => {
             return <li key={`${order._id}${i}`} className={styles.order}>
               <div className={styles.date}>Created at: {new Date(order.created_at).toLocaleDateString()}</div>
-
               <h2>Order Status: {order.status}</h2>
               <ul className={styles.inner}>
                 {order.products.map((product, i) => {

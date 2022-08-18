@@ -109,6 +109,15 @@ a {
   color: var(--clr-red-400);
 }
 
+.btn-link {
+  cursor: pointer;
+  border: none;
+}
+
+.btn-link:hover {
+  color: var(--clr-green-200);
+}
+
 .centered {
   text-align: center;
 }

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import AuthContext from '../../shared/context/auth-context';
-import { loginService, checkAuth } from '../../services/auth-service';
+import { loginService, getProfile } from '../../services/auth-service';
 import styles from './Login.module.css';
 
 const Login = () => {
@@ -18,7 +18,7 @@ const Login = () => {
   });
 
   useEffect(() => {
-    checkAuth().then(user => {
+    getProfile().then(user => {
       console.log(user);
       setChecked(true);
       if (!user.message) {

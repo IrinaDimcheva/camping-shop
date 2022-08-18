@@ -30,7 +30,7 @@ const logoutService = () => {
     .catch(err => console.log(err));
 };
 
-const checkAuth = async () => {
+const getProfile = async () => {
   return fetch(`${baseUrl}/user/profile`, {
     credentials: 'include'
   }).then(res => res.json());
@@ -40,5 +40,5 @@ export {
   registerService,
   loginService,
   logoutService,
-  checkAuth
+  getProfile
 };

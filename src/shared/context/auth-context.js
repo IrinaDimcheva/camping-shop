@@ -13,15 +13,16 @@ const AuthContext = createContext({
 });
 
 export const AuthContextProvider = props => {
+  const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [userId, setUserId] = useState('');
   const [email, setEmail] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
-  const userIsLoggedIn = !!userId;
   const navigate = useNavigate();
 
   const loginHandler = useCallback((user) => {
+    setUser(user);
     setIsLoggedIn(!!user);
     setUsername(user.username);
     setUserId(user._id);
@@ -39,7 +40,7 @@ export const AuthContextProvider = props => {
       navigate('/login');
       return null;
     });
-  }, []);
+  }, [navigate]);
 
 
   const contextValue = {
@@ -52,12 +53,9 @@ export const AuthContextProvider = props => {
     logout: logoutHandler,
   };
 
-  console.log(
-    username,
-    userId,
-    email,
-    isAdmin,
-    userIsLoggedIn)
+  // console.log(
+  //   user
+  // )
 
   return <AuthContext.Provider value={contextValue}>
     {props.children}

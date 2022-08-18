@@ -7,7 +7,7 @@ function useFetch(url, credentials = null, method = 'GET', body = null, headers 
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(url, credentials)
+    fetch(url)
       .then((res) => res.json())
       .then((response) => {
         // console.log(response);
