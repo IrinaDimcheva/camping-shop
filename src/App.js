@@ -8,6 +8,7 @@ import AuthContext from './shared/context/auth-context';
 import { AuthContextProvider } from './shared/context/auth-context';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
 import { getProfile } from './services/auth-service';
+import ErrorBoundary from './shared/components/ErrorBoundary';
 import './App.css';
 
 const ProductsAll = lazy(() => import('./products/pages/ProductsAll'));
@@ -63,30 +64,32 @@ function App() {
       <Header onShowCart={showCartHandler} />
       <main>
         <div className="container centered">
-          <Suspense fallback={<LoadingSpinner />}>
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/products' element={<ProductsAll />} />
-              <Route path='/products/:productId' element={<ProductDetails />} />
-              <Route path='/products/category/:category' element={<ProductsCategory />} />
-              {!user && <Route path='/login' element={<Login />} />}
-              <Route path='/register' element={<Register />} />
-              <Route path='/order' element={<OrderForm />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/favorites' element={<Favorites />} />
-              {/* {isLoggedIn && isAdmin && ( */}
-              <Route path='/products/:productId/edit' element={<ProductEdit />} />
-              {/* // )} */}
-              {/* {isLoggedIn && isAdmin && ( */}
-              <Route path='/products/new' exact element={<ProductNew />} />
-              {/* // )} */}
-              {/* {user && isAdmin && ( */}
-              <Route path='/admin/orders' element={<Orders />} />
-              {/* )} */}
-              <Route path='*' element={<FOF />} />
-              {/* <Route path='*' element={<Navigate to='/' />} /> */}
-            </Routes>
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/products' element={<ProductsAll />} />
+                <Route path='/products/:productId' element={<ProductDetails />} />
+                <Route path='/products/category/:category' element={<ProductsCategory />} />
+                {!user && <Route path='/login' element={<Login />} />}
+                <Route path='/register' element={<Register />} />
+                <Route path='/order' element={<OrderForm />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/favorites' element={<Favorites />} />
+                {/* {isLoggedIn && isAdmin && ( */}
+                <Route path='/products/:productId/edit' element={<ProductEdit />} />
+                {/* // )} */}
+                {/* {isLoggedIn && isAdmin && ( */}
+                <Route path='/products/new' exact element={<ProductNew />} />
+                {/* // )} */}
+                {/* {user && isAdmin && ( */}
+                <Route path='/admin/orders' element={<Orders />} />
+                {/* )} */}
+                <Route path='*' element={<FOF />} />
+                {/* <Route path='*' element={<Navigate to='/' />} /> */}
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
         </div>
       </main>
       <Footer />
