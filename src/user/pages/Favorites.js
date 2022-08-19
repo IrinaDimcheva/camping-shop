@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { getFavorites, removeFromFavorites } from '../../services/user-service';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import BackToTop from '../../shared/components/UIElements/BackToTop';
 import FavoriteItem from '../components/FavoriteItem';
 import styles from './Favorites.module.css';
 
@@ -23,14 +24,14 @@ const Favorites = () => {
   }, []);
 
   const removeHandler = (productId) => {
-    setIsLoading(true);
+    // setIsLoading(true);
     removeFromFavorites({ productId }).then(() => {
       getFavorites().then(favorites => {
-        setIsLoading(false);
+        // setIsLoading(false);
         setFavorites(favorites);
       })
     }).catch(err => {
-      setIsLoading(false);
+      // setIsLoading(false);
       setError(err.message);
     });
   };
@@ -61,6 +62,7 @@ const Favorites = () => {
           />
         )))}
       </ul>
+      <BackToTop />
     </div>
   );
 };

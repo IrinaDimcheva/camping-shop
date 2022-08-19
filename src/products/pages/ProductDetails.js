@@ -13,7 +13,7 @@ const ProductDetails = () => {
   const authCtx = useContext(AuthContext);
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [inFavorites, setInFavorites] = useState(null);
+  const [inFavorites, setInFavorites] = useState();
   const [amount, setAmount] = useState(1);
   const [error, setError] = useState(null);
   const params = useParams();
@@ -43,7 +43,7 @@ const ProductDetails = () => {
   const favoritesHandler = () => {
     if (!authCtx.isLoggedIn) { navigate('/login'); }
     if (inFavorites) {
-      removeFromFavorites({ productId }).then(() => setInFavorites(null)).catch(err => setError(err.message));
+      removeFromFavorites({ productId }).then(() => setInFavorites(false)).catch(err => setError(err.message));
       return;
     }
     addToFavorites({ productId }).then(() => setInFavorites(!!productId)).catch(err => setError(err.message));
