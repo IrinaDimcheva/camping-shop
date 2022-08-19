@@ -20,11 +20,15 @@ const OrderForm = () => {
 
   useEffect(() => {
     getCart().then(products => {
-      products = products.map(p => p = { amount: p.amount, productId: p.productId._id, price: p.productId.price, name: p.productId.name, imageUrl: p.productId.imageUrl });
-      console.log(products);
+      products = products.map(p => p = {
+        amount: p.amount,
+        productId: p.productId._id,
+        price: p.productId.price,
+        name: p.productId.name,
+        imageUrl: p.productId.imageUrl
+      });
       setOrder(products);
     }).catch(err => {
-      console.log(err);
       setError(err.message);
     });
 
@@ -36,8 +40,6 @@ const OrderForm = () => {
   const onSubmitHandler = (data, event) => {
     event.preventDefault();
     setIsLoading(true);
-    const orderData = { data, order }
-    console.log(data, order);
     setIsHidden(true);
     createOrder({ data, order }).then((res) => {
       setError(res.message);
@@ -45,12 +47,11 @@ const OrderForm = () => {
       clearId = setTimeout(() => {
         setIsHidden(false);
         navigate('/profile');
-      }, 1500);
+      }, 1000);
     }).catch(err => {
       setIsHidden(false);
       setIsLoading(false);
       setError(err.message);
-      console.log(err);
     });
   };
 

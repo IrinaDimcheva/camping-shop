@@ -133,7 +133,9 @@ const ProductDetails = () => {
           )}
         </article>
       )}
-      {product && inFavorites !== null && <button className='btn btn-primary' onClick={backHandler}>BACK</button>}
+      {product && inFavorites !== null && !authCtx.isAdmin && (
+        <button className='btn btn-primary' onClick={backHandler}>BACK</button>
+      )}
       <BackToTop />
     </div>
   );

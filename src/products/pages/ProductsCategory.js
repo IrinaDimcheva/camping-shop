@@ -5,6 +5,7 @@ import { getProductsByCategory } from "../../services/product-service";
 import ProductList from "../components/ProductList";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import BackToTop from "../../shared/components/UIElements/BackToTop";
+import SearchBar from "../../shared/components/SearchBar";
 
 
 const ProductsCategory = () => {
@@ -24,8 +25,9 @@ const ProductsCategory = () => {
   }, [category]);
 
   return (
-    <div className={`${"centered"} `}>
+    <>
       {isLoading && <LoadingSpinner />}
+      <SearchBar placeholder={'Search for products...'} data={products} />
       <section>
         {!isLoading && products.length === 0 && (
           <h1>No products for this category!</h1>
@@ -35,7 +37,7 @@ const ProductsCategory = () => {
         )}
       </section>
       <BackToTop />
-    </div>
+    </>
   );
 };
 

@@ -21,9 +21,14 @@ const Login = () => {
     getProfile().then(user => {
       console.log(user);
       setChecked(true);
+      // if (!user) {
+      //   return;
+      // }
+      // authCtx.login(user);
+      // navigate(-1, { replace: true });
       if (!user.message) {
         authCtx.login(user);
-        navigate(-1);
+        navigate('/');
         return;
       }
     })

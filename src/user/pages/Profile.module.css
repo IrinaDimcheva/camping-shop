@@ -1,6 +1,7 @@
-.inner {
+.list {
   max-width: 70rem;
   margin: 0 auto;
+  padding-inline: 2rem;
   display: flex;
   flex-direction: column;
 }
@@ -8,7 +9,11 @@
 .order {
   display: flex;
   flex-direction: column;
-  max-width: 60em;
+  align-content: stretch;
+  align-items: stretch;
+  justify-content: stretch;
+  width: 50rem;
+  max-width: 60rem;
   margin: 3rem auto;
   padding-inline: 1.5rem;
   background-color: var(--clr-gray-50);
@@ -17,6 +22,7 @@
 }
 
 .order-item {
+  flex: 1 1 100%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -60,4 +66,12 @@
   font-weight: bold;
   font-size: 1.5rem;
   margin: 1rem 0;
+}
+
+.link {
+  color: var(--clr-green-200);
+}
+
+.link:hover {
+  color: var(--clr-green-400);
 }

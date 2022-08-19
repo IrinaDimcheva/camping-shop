@@ -42,13 +42,13 @@ const Header = (props) => {
                 </button>
               </li>
             )}
-            {/* {auth.isLoggedIn && auth.isAdmin && (
+            {auth.isLoggedIn && auth.isAdmin && (
               <li>
                 <NavLink to='/products' className={(navData) => navData.isActive ? styles.active : ''}>
                   Manage Products
                 </NavLink>
               </li>
-            )} */}
+            )}
             {auth.isLoggedIn && auth.isAdmin && (
               <li>
                 <NavLink to='/products/new' className={(navData) => navData.isActive ? styles.active : ''}>

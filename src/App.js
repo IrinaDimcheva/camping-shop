@@ -63,7 +63,7 @@ function App() {
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
       <main>
-        <div className="container centered">
+        <div className="container">
           <ErrorBoundary>
             <Suspense fallback={<LoadingSpinner />}>
               <Routes>
@@ -71,20 +71,14 @@ function App() {
                 <Route path='/products' element={<ProductsAll />} />
                 <Route path='/products/:productId' element={<ProductDetails />} />
                 <Route path='/products/category/:category' element={<ProductsCategory />} />
-                {!user && <Route path='/login' element={<Login />} />}
-                <Route path='/register' element={<Register />} />
-                <Route path='/order' element={<OrderForm />} />
-                <Route path='/profile' element={<Profile />} />
-                <Route path='/favorites' element={<Favorites />} />
-                {/* {isLoggedIn && isAdmin && ( */}
+                <Route path='/login' element={<Login user={!user} />} />
+                <Route path='/register' element={<Register user={!user} />} />
+                <Route path='/order' element={<OrderForm user={user} />} />
+                <Route path='/profile' element={<Profile user={user} />} />
+                <Route path='/favorites' element={<Favorites user={user} />} />
                 <Route path='/products/:productId/edit' element={<ProductEdit />} />
-                {/* // )} */}
-                {/* {isLoggedIn && isAdmin && ( */}
                 <Route path='/products/new' exact element={<ProductNew />} />
-                {/* // )} */}
-                {/* {user && isAdmin && ( */}
                 <Route path='/admin/orders' element={<Orders />} />
-                {/* )} */}
                 <Route path='*' element={<FOF />} />
                 {/* <Route path='*' element={<Navigate to='/' />} /> */}
               </Routes>

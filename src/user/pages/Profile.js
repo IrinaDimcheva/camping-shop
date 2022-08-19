@@ -7,15 +7,16 @@ import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import styles from './Profile.module.css';
 
 const Profile = () => {
-  const [data, setData] = useState(null);
+  const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
     getProfile().then(userData => {
+      userData = userData.orders.sort((a, b) => (b.created_at).localeCompare(a.created_at));
       setIsLoading(false);
-      setData(userData);
+      setOrders(userData);
       console.log(userData);
     }).catch(err => {
       console.log(err);
@@ -29,14 +30,14 @@ const Profile = () => {
       {isLoading && <LoadingSpinner />}
       {!!error && <p>{error}</p>}
       <h1>User Orders</h1>
-      {!isLoading && !data && (
-        <h3>No orders for this user yet. Look at our <Link to='/products'>products</Link></h3>
+      {!isLoading && !orders.length && (
+        <h3>No orders. Look at our <Link className={styles.link} to='/products'>products</Link></h3>
       )}
-      {!isLoading && data && (
-        <ul className={styles.inner}>
-          {data.orders.map((order, i) => {
+      {!isLoading && orders.length > 0 && (
+        <ul className={styles.list}>
+          {orders.map((order, i) => {
             return <li key={`${order._id}${i}`} className={styles.order}>
-              <div className={styles.date}>Created at: {new Date(order.created_at).toLocaleDateString()}</div>
+              <div className={styles.date}>Created at: {new Date(order.created_at).toLocaleDateString()} {new Date(order.created_at).toLocaleTimeString()}</div>
               <h2>Order Status: {order.status}</h2>
               <ul className={styles.inner}>
                 {order.products.map((product, i) => {
