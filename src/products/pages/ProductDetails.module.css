@@ -47,7 +47,7 @@
   background-color: var(--clr-gray-50);
   border-radius: 0.2em;
   padding: 0em 3em 2em;
-  margin-top: 3em;
+  margin-top: 2em;
 }
 
 .cart-inner {
@@ -115,7 +115,9 @@
 }
 
 .message {
-  height: 2.5rem;
+  margin-top: 0;
+  height: 3rem;
+  text-align: right;
 }
 
 @media (min-width: 768px) {

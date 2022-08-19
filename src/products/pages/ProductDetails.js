@@ -76,6 +76,10 @@ const ProductDetails = () => {
     clearId = setTimeout(() => { setError(null); }, 3000);
   };
 
+  const backHandler = () => {
+    navigate(-1);
+  }
+
   return (
     <div className='centered'>
       {isLoading && <LoadingSpinner className='centered' />}
@@ -106,11 +110,11 @@ const ProductDetails = () => {
                       <button className='btn btn-primary'>ADD TO CART</button>
                     </div>
                   </form>
-                  <p className={styles.message}>{!!error && <span>{error}</span>}</p>
                   <button className='btn-link' type='submit' onClick={favoritesHandler}>
                     <i className="fa-solid fa-heart"></i>
                     {inFavorites ? ' Remove from favorites' : ' Add to Favorites'}
                   </button>
+                  <p className={styles.message}>{!!error && <span>{error}</span>}</p>
                 </div>
               )}
             </div>
@@ -129,6 +133,7 @@ const ProductDetails = () => {
           )}
         </article>
       )}
+      {product && inFavorites !== null && <button className='btn btn-primary' onClick={backHandler}>BACK</button>}
       <BackToTop />
     </div>
   );
