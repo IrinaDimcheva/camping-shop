@@ -38,7 +38,7 @@ const ProductDetails = () => {
     getProfile().then(user => {
       setInFavorites(!!user?.favorites?.filter(p => p._id === productId).length);
     })
-  }, []);
+  }, [productId]);
 
   const favoritesHandler = () => {
     if (!authCtx.isLoggedIn) { navigate('/login'); }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { getFavorites, removeFromFavorites } from '../../services/user-service';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
@@ -6,7 +7,7 @@ import FavoriteItem from '../components/FavoriteItem';
 import styles from './Favorites.module.css';
 
 const Favorites = () => {
-  const [favorites, setFavorites] = useState(null);
+  const [favorites, setFavorites] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -38,9 +39,18 @@ const Favorites = () => {
     <div className={styles.container}>
       {isLoading && <LoadingSpinner />}
       <h2>My Favorites</h2>
+      {!isLoading && !favorites.length && (
+        <>
+          <p>No favorite products added.</p>
+          <div className={styles.actions}>
+            <Link to='/' className='btn btn-primary'>Browse Collections</Link>
+            <Link to='/products' className='btn btn-primary'>All Products</Link>
+          </div>
+        </>
+      )}
       {!!error && <p>{error}</p>}
       <ul className={styles['list-items']}>
-        {!isLoading && favorites && (favorites.map(item => (
+        {!isLoading && favorites.length > 0 && (favorites.map(item => (
           <FavoriteItem
             key={item._id}
             _id={item._id}

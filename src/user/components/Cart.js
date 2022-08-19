@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { getCart, removeFromCart } from '../../services/user-service';
 import Modal from '../../shared/components/UIElements/Modal';

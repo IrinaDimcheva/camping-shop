@@ -13,7 +13,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState(null);
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'onBlur' || 'onChange'
   });
 
@@ -31,7 +31,7 @@ const Login = () => {
         console.log(err);
         navigate('/login');
       });
-  }, []);
+  }, [authCtx, navigate]);
 
   if (!checked) { return null; }
 
