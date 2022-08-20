@@ -7,7 +7,7 @@ import { createOrder } from '../../services/order-service';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import styles from './ProductNew.module.css';
 
-const OrderForm = () => {
+const OrderForm = (props) => {
   const [order, setOrder] = useState([]);
   const [isHidden, setIsHidden] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,6 +19,7 @@ const OrderForm = () => {
   let clearId;
 
   useEffect(() => {
+    document.title = props.title;
     getCart().then(products => {
       products = products.map(p => p = {
         amount: p.amount,
@@ -34,6 +35,7 @@ const OrderForm = () => {
 
     return (() => {
       clearTimeout(clearId);
+      document.title = '';
     });
   }, [clearId]);
 

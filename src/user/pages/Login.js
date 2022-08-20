@@ -7,7 +7,7 @@ import AuthContext from '../../shared/context/auth-context';
 import { loginService, getProfile } from '../../services/auth-service';
 import styles from './Login.module.css';
 
-const Login = () => {
+const Login = (props) => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,14 +18,10 @@ const Login = () => {
   });
 
   useEffect(() => {
+    document.title = props.title;
     getProfile().then(user => {
       console.log(user);
       setChecked(true);
-      // if (!user) {
-      //   return;
-      // }
-      // authCtx.login(user);
-      // navigate(-1, { replace: true });
       if (!user.message) {
         authCtx.login(user);
         navigate('/');
@@ -36,6 +32,8 @@ const Login = () => {
         console.log(err);
         navigate('/login');
       });
+
+    return () => document.title = '';
   }, [authCtx, navigate]);
 
   if (!checked) { return null; }

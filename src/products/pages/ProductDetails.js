@@ -9,7 +9,7 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import AuthContext from '../../shared/context/auth-context';
 import styles from './ProductDetails.module.css';
 
-const ProductDetails = () => {
+const ProductDetails = (props) => {
   const authCtx = useContext(AuthContext);
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +22,7 @@ const ProductDetails = () => {
   let clearId;
 
   useEffect(() => {
+    document.title = props.title;
     setIsLoading(true);
     getProductById(productId).then(product => {
       setIsLoading(false);
@@ -31,7 +32,10 @@ const ProductDetails = () => {
       setError(err.message);
     });
 
-    return () => clearTimeout(clearId);
+    return () => {
+      clearTimeout(clearId);
+      document.title = '';
+    };
   }, [productId, clearId, inFavorites]);
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, Suspense, lazy } from 'react';
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import Footer from './shared/components/Footer';
 import Header from './shared/components/Header';
@@ -63,23 +63,23 @@ function App() {
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
       <main>
-        <div className="container">
+        <div className="container centered">
           <ErrorBoundary>
             <Suspense fallback={<LoadingSpinner />}>
               <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/products' element={<ProductsAll />} />
-                <Route path='/products/:productId' element={<ProductDetails />} />
-                <Route path='/products/category/:category' element={<ProductsCategory />} />
-                <Route path='/login' element={<Login user={!user} />} />
-                <Route path='/register' element={<Register user={!user} />} />
-                <Route path='/order' element={<OrderForm user={user} />} />
-                <Route path='/profile' element={<Profile user={user} />} />
-                <Route path='/favorites' element={<Favorites user={user} />} />
-                <Route path='/products/:productId/edit' element={<ProductEdit />} />
-                <Route path='/products/new' exact element={<ProductNew />} />
+                <Route path='/' element={<Home title='CampingShop' />} />
+                <Route path='/products' element={<ProductsAll title='CampingShop | Products' />} />
+                <Route path='/products/:productId' element={<ProductDetails title='CampingShop | Product Details' />} />
+                <Route path='/products/category/:category' element={<ProductsCategory title='CampingShop | Products' />} />
+                <Route path='/login' element={<Login user={!user} title='CampingShop | Login' />} />
+                <Route path='/register' element={<Register user={!user} title='CampingShop | Register' />} />
+                <Route path='/order' element={<OrderForm user={user} title='CampingShop | Order' />} />
+                <Route path='/profile' element={<Profile user={user} title='CampingShop | Profile' />} />
+                <Route path='/favorites' element={<Favorites user={user} title='CampingShop | Favorites' />} />
+                <Route path='/products/:productId/edit' element={<ProductEdit title='CampingShop | Product Edit' />} />
+                <Route path='/products/new' exact element={<ProductNew title='CampingShop | Product New' />} />
                 <Route path='/admin/orders' element={<Orders />} />
-                <Route path='*' element={<FOF />} />
+                <Route path='*' element={<FOF title='CampingShop | 404' />} />
                 {/* <Route path='*' element={<Navigate to='/' />} /> */}
               </Routes>
             </Suspense>

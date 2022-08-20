@@ -8,12 +8,13 @@ import BackToTop from "../../shared/components/UIElements/BackToTop";
 import SearchBar from "../../shared/components/SearchBar";
 
 
-const ProductsCategory = () => {
+const ProductsCategory = (props) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { category } = useParams();
 
   useEffect(() => {
+    document.title = props.title;
     setIsLoading(true);
     getProductsByCategory(category).then(data => {
       setProducts(data.products);
@@ -22,6 +23,7 @@ const ProductsCategory = () => {
       setIsLoading(false);
       console.log(err);
     });
+    return () => document.title = '';
   }, [category]);
 
   return (

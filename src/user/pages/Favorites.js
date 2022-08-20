@@ -7,12 +7,13 @@ import BackToTop from '../../shared/components/UIElements/BackToTop';
 import FavoriteItem from '../components/FavoriteItem';
 import styles from './Favorites.module.css';
 
-const Favorites = () => {
+const Favorites = (props) => {
   const [favorites, setFavorites] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    document.title = props.title;
     setIsLoading(true);
     getFavorites().then(res => {
       setIsLoading(false);
@@ -21,17 +22,15 @@ const Favorites = () => {
       setIsLoading(false);
       setError(err.message);
     });
+    return () => document.title = '';
   }, []);
 
   const removeHandler = (productId) => {
-    // setIsLoading(true);
     removeFromFavorites({ productId }).then(() => {
       getFavorites().then(favorites => {
-        // setIsLoading(false);
         setFavorites(favorites);
       })
     }).catch(err => {
-      // setIsLoading(false);
       setError(err.message);
     });
   };

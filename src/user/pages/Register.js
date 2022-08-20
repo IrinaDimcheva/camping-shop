@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
@@ -7,7 +7,7 @@ import { registerService } from '../../services/auth-service';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import styles from './Login.module.css';
 
-const Register = () => {
+const Register = (props) => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +15,11 @@ const Register = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     mode: 'onTouched' || 'onBlur'
   });
+
+  useEffect(() => {
+    document.title = props.title;
+    return () => document.title = '';
+  }, []);
 
   const onSubmitHandler = (data, event) => {
     event.preventDefault();

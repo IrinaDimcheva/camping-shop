@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
-const FOF = () => {
+const FOF = (props) => {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
+    document.title = props.title;
     let t = setTimeout(() => setRedirect(true), 2000);
 
-    return () => clearTimeout(t);
+    return () => {
+      clearTimeout(t);
+      document.title = '';
+    };
   }, [redirect, setRedirect]);
 
   return redirect ? (

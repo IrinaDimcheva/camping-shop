@@ -12,6 +12,7 @@ const ProductsAll = (props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    document.title = props.title;
     setIsLoading(true);
     getProducts().then(result => {
       setProducts(result.products);
@@ -20,6 +21,8 @@ const ProductsAll = (props) => {
       console.log(err);
       setIsLoading(false);
     });
+
+    return () => document.title = '';
   }, []);
 
   return (

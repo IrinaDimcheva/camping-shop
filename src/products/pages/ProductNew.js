@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
@@ -6,13 +6,18 @@ import { createProduct } from '../../services/product-service';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import styles from './ProductNew.module.css';
 
-const ProductNew = () => {
+const ProductNew = (props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     mode: 'onTouched' || 'onBlur'
   });
+
+  useEffect(() => {
+    document.title = props.title;
+    return () => document.title = '';
+  }, []);
 
   const onSubmitHandler = (data, event) => {
     event.preventDefault();

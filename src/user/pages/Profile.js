@@ -6,12 +6,13 @@ import BackToTop from "../../shared/components/UIElements/BackToTop";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import styles from './Profile.module.css';
 
-const Profile = () => {
+const Profile = (props) => {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    document.title = props.title;
     setIsLoading(true);
     getProfile().then(userData => {
       userData = userData.orders.sort((a, b) => (b.created_at).localeCompare(a.created_at));
@@ -23,15 +24,16 @@ const Profile = () => {
       setIsLoading(false);
       setError(err.message);
     });
+    return () => document.title = '';
   }, []);
 
   return (
     <>
       {isLoading && <LoadingSpinner />}
       {!!error && <p>{error}</p>}
-      <h1>User Orders</h1>
+      <h1 className="centered">User Orders</h1>
       {!isLoading && !orders.length && (
-        <h3>No orders. Look at our <Link className={styles.link} to='/products'>products</Link></h3>
+        <h3 className="centered">No orders. Look at our <Link className={styles.link} to='/products'>products</Link></h3>
       )}
       {!isLoading && orders.length > 0 && (
         <ul className={styles.list}>

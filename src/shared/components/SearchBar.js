@@ -50,7 +50,7 @@ const SearchBar = ({ placeholder, data }) => {
         <div className={styles['data-result']}>
           {filteredData.slice(0, 15).map((value, key) => {
             return <Link to={`/products/${value._id}`} className={data.item}>
-              <p>{value.name}</p>
+              <p style={{ 'text-align': 'left' }}>{value.name}</p>
             </Link>
           })}
         </div>
