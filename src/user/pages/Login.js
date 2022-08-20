@@ -20,11 +20,10 @@ const Login = (props) => {
   useEffect(() => {
     document.title = props.title;
     getProfile().then(user => {
-      console.log(user);
       setChecked(true);
       if (!user.message) {
         authCtx.login(user);
-        navigate('/');
+        navigate('/', { replace: true });
         return;
       }
     })
@@ -51,11 +50,9 @@ const Login = (props) => {
         if (!user._id) {
           return;
         }
-        console.log(user);
         authCtx.login(user);
         navigate(-1 || '/', { replace: true });
       }).catch(err => {
-        console.log(err.message);
         setError(err.message);
       });
     setError(null);

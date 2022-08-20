@@ -21,6 +21,12 @@
   box-shadow: 0 0 0.3em 0.1em rgba(227, 225, 225, 0.2);
 }
 
+
+.inner {
+  display: flex;
+  flex-direction: column;
+}
+
 .order-item {
   flex: 1 1 100%;
   display: flex;

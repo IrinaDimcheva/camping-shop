@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, Suspense, lazy } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 
 import Footer from './shared/components/Footer';
 import Header from './shared/components/Header';
@@ -23,7 +23,7 @@ const OrderForm = lazy(() => import('./products/pages/OrderForm'));
 const Favorites = lazy(() => import('./user/pages/Favorites'));
 const Profile = lazy(() => import('./user/pages/Profile'));
 const Orders = lazy(() => import('./admin/Orders'));
-const FOF = lazy(() => import('./shared/pages/FOF'));
+// const FOF = lazy(() => import('./shared/pages/FOF'));
 
 
 function App() {
@@ -34,7 +34,6 @@ function App() {
 
   useEffect(() => {
     getProfile().then(user => {
-      console.log(user);
       login(user);
       setChecked(true);
       if (!user.ok) {
@@ -46,7 +45,7 @@ function App() {
         console.log(err);
         navigate('/login');
       });
-  }, [login]);
+  }, []);
 
   if (!checked) { return null; }
 
@@ -99,8 +98,8 @@ function App() {
                   <ProductNew isAdmin={isAdmin} title='CampingShop | Product New' />
                 } />
                 <Route path='/admin/orders' element={<Orders isAdmin={isAdmin} />} />
-                <Route path='*' element={<FOF title='CampingShop | 404' />} />
-                {/* <Route path='*' element={<Navigate to='/' />} /> */}
+                <Route path='*' element={<Navigate to='/' />} />
+                {/* <Route path='*' element={<FOF title='CampingShop | 404' />} /> */}
               </Routes>
             </Suspense>
           </ErrorBoundary>

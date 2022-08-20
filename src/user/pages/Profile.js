@@ -31,9 +31,9 @@ const Profile = (props) => {
     <>
       {isLoading && <LoadingSpinner />}
       {!!error && <p>{error}</p>}
-      <h1 className="centered">User Orders</h1>
+      <h1>User Orders</h1>
       {!isLoading && !orders.length && (
-        <h3 className="centered">No orders. Look at our <Link className={styles.link} to='/products'>products</Link></h3>
+        <h3>No orders. Look at our <Link className={styles.link} to='/products'>products</Link></h3>
       )}
       {!isLoading && orders.length > 0 && (
         <ul className={styles.list}>

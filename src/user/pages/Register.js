@@ -24,24 +24,20 @@ const Register = (props) => {
   const onSubmitHandler = (data, event) => {
     event.preventDefault();
     setIsLoading(true);
-    console.log({ data });
-    registerService(data)
-      .then(user => {
-        setIsLoading(false);
-        if (!user.ok) {
-          setError(user.message);
-        }
-        if (!user._id) {
-          return;
-        }
-        console.log(user);
-        authCtx.login(user);
-        navigate(-1 || '/', { replace: true });
-      }).catch(err => {
-        setIsLoading(false);
-        console.log(err);
-        alert(err.message);
-      });
+    registerService(data).then(user => {
+      setIsLoading(false);
+      if (!user.ok) {
+        setError(user.message);
+      }
+      if (!user._id) {
+        return;
+      }
+      authCtx.login(user);
+      navigate(-1 || '/', { replace: true });
+    }).catch(err => {
+      setIsLoading(false);
+      setError(err.message);
+    });
     setError(null);
   };
 

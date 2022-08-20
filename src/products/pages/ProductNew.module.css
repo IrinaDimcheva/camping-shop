@@ -39,6 +39,11 @@ hr {
   margin-bottom: 1rem;
 }
 
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
 .link {
   color: var(--clr-green-200);
 }

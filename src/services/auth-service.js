@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:5000/api';
+const baseUrl = process.env.REACT_APP_REST_API_URL;
 
 const registerService = (data) => {
   return fetch(`${baseUrl}/auth/register`, {

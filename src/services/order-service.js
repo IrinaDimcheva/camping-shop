@@ -1,7 +1,7 @@
-const baseUrl = 'http://localhost:5000/api/orders';
+const baseUrl = process.env.REACT_APP_REST_API_URL;
 
 const createOrder = (data) => {
-  return fetch(`${baseUrl}/new`, {
+  return fetch(`${baseUrl}/orders/new`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

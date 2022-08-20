@@ -49,13 +49,10 @@ export const AuthContextProvider = props => {
     email,
     isAdmin,
     isLoggedIn,
+    user,
     login: loginHandler,
     logout: logoutHandler,
   };
-
-  // console.log(
-  //   user
-  // )
 
   return <AuthContext.Provider value={contextValue}>
     {props.children}

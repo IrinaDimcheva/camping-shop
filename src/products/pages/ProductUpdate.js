@@ -179,10 +179,12 @@ const ProductEdit = () => {
               <option value="accessories">Accessories</option>
             </select>
           </p>
-          <Link type="reset" className="btn btn-alt" to={`/products/${productId}`}>Cancel</Link>
-          {!isLoading && (
-            <button className="btn btn-primary">Save</button>
-          )}
+          <div className={styles.actions}>
+            <Link type="reset" className="btn btn-alt" to={`/products/${productId}`}>Cancel</Link>
+            {!isLoading && (
+              <button className="btn btn-primary">Save</button>
+            )}
+          </div>
         </form>
       )}
     </div>

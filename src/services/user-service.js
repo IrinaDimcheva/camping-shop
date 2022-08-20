@@ -1,7 +1,7 @@
-const baseUrl = 'http://localhost:5000/api/user';
+const baseUrl = process.env.REACT_APP_REST_API_URL;
 
 const getCart = () => {
-  return fetch(`${baseUrl}/cart`, {
+  return fetch(`${baseUrl}/user/cart`, {
     credentials: 'include'
   }).then(res => res.json());
 };
@@ -11,7 +11,7 @@ const addToCart = (productId, amount) => {
     productId,
     amount
   };
-  return fetch(`${baseUrl}/cart/add`, {
+  return fetch(`${baseUrl}/user/cart/add`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ const addToCart = (productId, amount) => {
 };
 
 const removeFromCart = (productId) => {
-  return fetch(`${baseUrl}/cart/remove`, {
+  return fetch(`${baseUrl}/user/cart/remove`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -33,13 +33,13 @@ const removeFromCart = (productId) => {
 };
 
 const getFavorites = () => {
-  return fetch(`${baseUrl}/favorites`, {
+  return fetch(`${baseUrl}/user/favorites`, {
     credentials: 'include'
   }).then(res => res.json());
 };
 
 const addToFavorites = (productId) => {
-  return fetch(`${baseUrl}/favorites/add`, {
+  return fetch(`${baseUrl}/user/favorites/add`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ const addToFavorites = (productId) => {
 };
 
 const removeFromFavorites = (productId) => {
-  return fetch(`${baseUrl}/favorites/remove`, {
+  return fetch(`${baseUrl}/user/favorites/remove`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
