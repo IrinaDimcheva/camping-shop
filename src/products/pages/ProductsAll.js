@@ -5,11 +5,11 @@ import ProductList from '../components/ProductList';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import BackToTop from '../../shared/components/UIElements/BackToTop';
 import SearchBar from '../../shared/components/SearchBar';
-import styles from './ProductsAll.module.css';
 
 const ProductsAll = (props) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     document.title = props.title;
@@ -18,7 +18,7 @@ const ProductsAll = (props) => {
       setProducts(result.products);
       setIsLoading(false);
     }).catch(err => {
-      console.log(err);
+      setError(err.message);
       setIsLoading(false);
     });
 
@@ -29,6 +29,7 @@ const ProductsAll = (props) => {
     <>
       {/* <div className={styles.container}> */}
       {isLoading && <LoadingSpinner />}
+      {!!error && <p>{error}</p>}
       <section>
         {!isLoading && products.length && (
           <>

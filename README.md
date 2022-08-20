@@ -10,11 +10,11 @@ Non-register users have access to home, all products, product categories, can se
 
 #### Register users
 
-Register users have access to all products, product categories, can search for products and product details, can logout. Beside that they can add products to cart, remove products from cart, order products, save products to and remove them from favorites page, view user profile page with all their own orders, // write comments to products, update and delete their own comments.
+Register users have access to all products, product categories, can search for products and product details, can logout. Beside that they can add products to cart, remove products from cart, order products, save products to and remove them from favorites page, view user profile page with all their own orders, // TODO write comments to products, update and delete their own comments.
 
 #### Admin
 
-Admin user have access to all products, product categories, can search for products and product details, can logout. Beside that they can create new products, update and delete them, // approve or cancel orders.
+Admin user have access to all products, product categories, can search for products and product details, can logout. Beside that they can create new products, update and delete them, // TODO approve or cancel orders.
 
 ## Technology stack
 

@@ -68,17 +68,37 @@ function App() {
             <Suspense fallback={<LoadingSpinner />}>
               <Routes>
                 <Route path='/' element={<Home title='CampingShop' />} />
-                <Route path='/products' element={<ProductsAll title='CampingShop | Products' />} />
-                <Route path='/products/:productId' element={<ProductDetails title='CampingShop | Product Details' />} />
-                <Route path='/products/category/:category' element={<ProductsCategory title='CampingShop | Products' />} />
-                <Route path='/login' element={<Login user={!user} title='CampingShop | Login' />} />
-                <Route path='/register' element={<Register user={!user} title='CampingShop | Register' />} />
-                <Route path='/order' element={<OrderForm user={user} title='CampingShop | Order' />} />
-                <Route path='/profile' element={<Profile user={user} title='CampingShop | Profile' />} />
-                <Route path='/favorites' element={<Favorites user={user} title='CampingShop | Favorites' />} />
-                <Route path='/products/:productId/edit' element={<ProductEdit title='CampingShop | Product Edit' />} />
-                <Route path='/products/new' exact element={<ProductNew title='CampingShop | Product New' />} />
-                <Route path='/admin/orders' element={<Orders />} />
+                <Route path='/products' element={
+                  <ProductsAll title='CampingShop | Products' />
+                } />
+                <Route path='/products/:productId' element={
+                  <ProductDetails title='CampingShop | Product Details' />
+                } />
+                <Route path='/products/category/:category' element={
+                  <ProductsCategory title='CampingShop | Products' />
+                } />
+                <Route path='/login' element={
+                  <Login user={!user} title='CampingShop | Login' />
+                } />
+                <Route path='/register' element={
+                  <Register user={!user} title='CampingShop | Register' />
+                } />
+                <Route path='/order' element={
+                  <OrderForm user={user} title='CampingShop | Order' />
+                } />
+                <Route path='/profile' element={
+                  <Profile user={user} title='CampingShop | Profile' />
+                } />
+                <Route path='/favorites' element={
+                  <Favorites user={user} title='CampingShop | Favorites' />
+                } />
+                <Route path='/products/:productId/edit' element={
+                  <ProductEdit isAdmin={isAdmin} title='CampingShop | Product Edit' />
+                } />
+                <Route path='/products/new' exact element={
+                  <ProductNew isAdmin={isAdmin} title='CampingShop | Product New' />
+                } />
+                <Route path='/admin/orders' element={<Orders isAdmin={isAdmin} />} />
                 <Route path='*' element={<FOF title='CampingShop | 404' />} />
                 {/* <Route path='*' element={<Navigate to='/' />} /> */}
               </Routes>
