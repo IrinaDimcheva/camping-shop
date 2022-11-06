@@ -2,6 +2,30 @@
 
 This is React course project part of my education in SoftUni and has no commercial use. The project itself is an online shop.
 
+![image](https://user-images.githubusercontent.com/62966560/200195249-0e79d599-d340-4400-8cab-84a142943f46.png)
+
+![image](https://user-images.githubusercontent.com/62966560/200195189-30a42402-9c09-425c-92a8-4e2191e55f85.png)
+
+![image](https://user-images.githubusercontent.com/62966560/200195307-c24e4f1c-015b-44ed-90cc-09f8aedab606.png)
+![image](https://user-images.githubusercontent.com/62966560/200195319-d79a0a46-2508-4f8a-bc84-b144f0353620.png)
+
+![image](https://user-images.githubusercontent.com/62966560/200195352-65a57564-ad16-4f4e-92f0-41828c5543bd.png)
+
+![image](https://user-images.githubusercontent.com/62966560/200195401-dc260a2a-95e3-44f5-a64f-9a86f8366c12.png)
+
+![image](https://user-images.githubusercontent.com/62966560/200196268-0dacd208-373a-4215-994c-727b144ea8a2.png)
+
+![image](https://user-images.githubusercontent.com/62966560/200196345-d5b7fb5d-a157-4f32-8900-5f17c480f332.png)
+
+![image](https://user-images.githubusercontent.com/62966560/200196422-d322990f-e84f-41da-87db-e7a823e19b6c.png)
+
+![image](https://user-images.githubusercontent.com/62966560/200196442-f3302465-eeee-49bb-8f81-23abfefc0532.png)
+
+![image](https://user-images.githubusercontent.com/62966560/200196467-d225c250-6af9-4878-8566-8212d4022588.png)
+
+![image](https://user-images.githubusercontent.com/62966560/200196377-ad285026-e741-4ea8-b39c-072ee4338439.png)
+
+
 ## How to use
 
 #### Non-register users
