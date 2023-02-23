@@ -12,7 +12,7 @@ const Register = (props) => {
   const authCtx = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'onTouched' || 'onBlur'
   });
 

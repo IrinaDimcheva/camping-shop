@@ -37,7 +37,7 @@ const OrderForm = (props) => {
       clearTimeout(clearId);
       document.title = '';
     });
-  }, [clearId]);
+  }, [clearId, props.title]);
 
   const onSubmitHandler = (data, event) => {
     event.preventDefault();

@@ -20,7 +20,6 @@ const ProductEdit = () => {
   useEffect(() => {
     setIsLoading(true);
     getProductById(productId).then(data => {
-      // console.log(data);
       setProduct(data);
       reset(data);
       setIsLoading(false);
@@ -32,7 +31,6 @@ const ProductEdit = () => {
 
   const onSubmitHandler = (data, event) => {
     event.preventDefault();
-    // console.log(data);
     setIsLoading(true);
     if (!isAdmin) {
       alert('You are unauthorized to perform this action!');

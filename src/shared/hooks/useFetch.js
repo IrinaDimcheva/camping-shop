@@ -10,7 +10,6 @@ function useFetch(url, credentials = null, method = 'GET', body = null, headers 
     fetch(url, credentials)
       .then((res) => res.json())
       .then((response) => {
-        // console.log(response);
         setData(response);
         setIsLoading(false);
       })
@@ -25,7 +24,6 @@ function useFetch(url, credentials = null, method = 'GET', body = null, headers 
     fetch(url, credentials, method = 'GET', body = null, headers = null)
       .then((res) => res.json())
       .then((response) => {
-        // console.log(response);
         setData(response);
         setIsLoading(false);
       })

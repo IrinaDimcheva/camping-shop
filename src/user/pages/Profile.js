@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { getProfile } from "../../services/auth-service";
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { getProfile } from '../../services/auth-service';
 
-import BackToTop from "../../shared/components/UIElements/BackToTop";
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import BackToTop from '../../shared/components/UIElements/BackToTop';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import styles from './Profile.module.css';
 
 const Profile = (props) => {
@@ -25,7 +25,7 @@ const Profile = (props) => {
       setError(err.message);
     });
     return () => document.title = '';
-  }, []);
+  }, [props.title]);
 
   return (
     <>
@@ -49,14 +49,14 @@ const Profile = (props) => {
                       <span className={styles.price}>{product.price.toFixed(2)} BGN</span>
                       <span className={styles.amount}>x {product.amount}</span>
                     </div>
-                  </li>
+                  </li>;
                 })}
               </ul>
               <div className={styles.total}>
                 <span>Total Price</span>
                 <span>{order.totalPrice.toFixed(2)} BGN</span>
               </div>
-            </li>
+            </li>;
           })}
         </ul>
       )}

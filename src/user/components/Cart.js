@@ -29,10 +29,8 @@ const Cart = props => {
 
   const removeHandler = (productId) => {
     setIsLoading(true);
-    console.log(productId);
     removeFromCart({ productId }).then(res => {
       getCart().then(data => {
-        console.log(data);
         setIsLoading(false);
         setTotal(data.reduce((acc, curr) => {
           return acc += curr.productId.price * curr.amount;
