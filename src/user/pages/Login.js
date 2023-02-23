@@ -33,7 +33,7 @@ const Login = (props) => {
       });
 
     return () => document.title = '';
-  }, [authCtx, navigate]);
+  }, [authCtx, navigate, props.title]);
 
   if (!checked) { return null; }
 
@@ -45,7 +45,7 @@ const Login = (props) => {
       .then(user => {
         setIsLoading(false);
         if (!user.ok) {
-          setError(user.message)
+          setError(user.message);
         }
         if (!user._id) {
           return;
@@ -99,6 +99,6 @@ const Login = (props) => {
       </div>
     </>
   );
-}
+};
 
 export default Login;

@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import BackToTop from "../../shared/components/UIElements/BackToTop";
-import Categories from "../components/Categories";
-import Hero from "../components/Hero";
+import BackToTop from '../../shared/components/UIElements/BackToTop';
+import Categories from '../components/Categories';
+import Hero from '../components/Hero';
 
 const Home = (props) => {
   useEffect(() => {
@@ -11,7 +11,7 @@ const Home = (props) => {
     return () => {
       document.title = '';
     };
-  }, []);
+  }, [props.title]);
 
   return (
     <>
@@ -20,6 +20,6 @@ const Home = (props) => {
       <BackToTop />
     </>
   );
-}
+};
 
 export default Home;

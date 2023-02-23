@@ -23,7 +23,7 @@ const ProductsAll = (props) => {
     });
 
     return () => document.title = '';
-  }, []);
+  }, [props.title]);
 
   return (
     <>

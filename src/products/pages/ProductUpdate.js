@@ -103,11 +103,11 @@ const ProductEdit = () => {
                 required: 'Product info is required.',
                 minLength: {
                   value: 10,
-                  message: "Product info should be at least 10 characters."
+                  message: 'Product info should be at least 10 characters.'
                 },
                 maxLength: {
                   value: 250,
-                  message: "Product info should not be longer than 10 characters."
+                  message: 'Product info should not be longer than 10 characters.'
                 }
               })}
               maxLength={250}

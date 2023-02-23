@@ -19,7 +19,7 @@ const Register = (props) => {
   useEffect(() => {
     document.title = props.title;
     return () => document.title = '';
-  }, []);
+  }, [props.title]);
 
   const onSubmitHandler = (data, event) => {
     event.preventDefault();
@@ -113,6 +113,6 @@ const Register = (props) => {
       <p>Have an account already? <Link to='/login' className={styles.link}>Login</Link></p>
     </div>
   );
-}
+};
 
 export default Register;

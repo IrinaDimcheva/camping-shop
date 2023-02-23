@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 
 const FOF = (props) => {
   const [redirect, setRedirect] = useState(false);
@@ -12,7 +12,7 @@ const FOF = (props) => {
       clearTimeout(t);
       document.title = '';
     };
-  }, [redirect, setRedirect]);
+  }, [redirect, setRedirect, props.title]);
 
   return redirect ? (
     <Navigate to="/" />

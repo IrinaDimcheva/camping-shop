@@ -10,14 +10,14 @@ const ProductNew = (props) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'onTouched' || 'onBlur'
   });
 
   useEffect(() => {
     document.title = props.title;
     return () => document.title = '';
-  }, []);
+  }, [props.title]);
 
   const onSubmitHandler = (data, event) => {
     event.preventDefault();
@@ -90,11 +90,11 @@ const ProductNew = (props) => {
               required: 'Product info is required.',
               minLength: {
                 value: 10,
-                message: "Product info should be at least 10 characters."
+                message: 'Product info should be at least 10 characters.'
               },
               maxLength: {
                 value: 250,
-                message: "Product info should not be longer than 10 characters."
+                message: 'Product info should not be longer than 10 characters.'
               }
             })}
             maxLength={250}

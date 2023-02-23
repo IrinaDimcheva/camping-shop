@@ -23,13 +23,13 @@ const Favorites = (props) => {
       setError(err.message);
     });
     return () => document.title = '';
-  }, []);
+  }, [props.title]);
 
   const removeHandler = (productId) => {
     removeFromFavorites({ productId }).then(() => {
       getFavorites().then(favorites => {
         setFavorites(favorites);
-      })
+      });
     }).catch(err => {
       setError(err.message);
     });

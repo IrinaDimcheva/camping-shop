@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 function useFetch(url, credentials = null, method = 'GET', body = null, headers = null) {
   const [data, setData] = useState(null);

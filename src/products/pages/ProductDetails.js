@@ -36,12 +36,12 @@ const ProductDetails = (props) => {
       clearTimeout(clearId);
       document.title = '';
     };
-  }, [productId, clearId, inFavorites]);
+  }, [productId, clearId, inFavorites, props.title]);
 
   useEffect(() => {
     getProfile().then(user => {
       setInFavorites(!!user?.favorites?.filter(p => p._id === productId).length);
-    })
+    });
   }, [productId]);
 
   const favoritesHandler = () => {
@@ -82,7 +82,7 @@ const ProductDetails = (props) => {
 
   const backHandler = () => {
     navigate(-1);
-  }
+  };
 
   return (
     <div className='centered'>
@@ -143,6 +143,6 @@ const ProductDetails = (props) => {
       <BackToTop />
     </div>
   );
-}
+};
 
 export default ProductDetails;

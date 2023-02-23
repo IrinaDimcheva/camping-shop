@@ -114,7 +114,7 @@ const OrderForm = (props) => {
               required: 'Postal code is required.',
               pattern: {
                 value: /^[0-9]{4}$/,
-                message: "Postal code should contains only digits, 4 symbols long."
+                message: 'Postal code should contains only digits, 4 symbols long.'
               }
             })}
           />
