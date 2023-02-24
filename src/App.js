@@ -45,6 +45,7 @@ function App() {
         console.log(err);
         navigate('/login');
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!checked) { return null; }

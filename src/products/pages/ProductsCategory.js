@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import { getProductsByCategory } from "../../services/product-service";
-import ProductList from "../components/ProductList";
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import BackToTop from "../../shared/components/UIElements/BackToTop";
-import SearchBar from "../../shared/components/SearchBar";
+import { getProductsByCategory } from '../../services/product-service';
+import ProductList from '../components/ProductList';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import BackToTop from '../../shared/components/UIElements/BackToTop';
+import SearchBar from '../../shared/components/SearchBar';
 
 
 const ProductsCategory = (props) => {
@@ -24,7 +24,7 @@ const ProductsCategory = (props) => {
       console.log(err);
     });
     return () => document.title = '';
-  }, [category]);
+  }, [category, props.title]);
 
   return (
     <>
