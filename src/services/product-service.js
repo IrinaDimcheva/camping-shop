@@ -1,4 +1,5 @@
-const baseUrl = process.env.REACT_APP_REST_API_URL;
+const baseUrl = process.env.production.REACT_APP_REST_API_URL;
+// const baseUrl = process.env.REACT_APP_REST_API_URL;
 
 const getProducts = () => {
   return fetch(`${baseUrl}/products`).then(res => res.json());
@@ -39,7 +40,7 @@ const deleteProduct = (productId) => {
     method: 'DELETE',
     credentials: 'include'
   }).then(res => res.json());
-}
+};
 
 export {
   getProducts,

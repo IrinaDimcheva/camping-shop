@@ -1,4 +1,5 @@
-const baseUrl = process.env.REACT_APP_REST_API_URL;
+const baseUrl = process.env.production.REACT_APP_REST_API_URL;
+// const baseUrl = process.env.REACT_APP_REST_API_URL;
 
 const getCart = () => {
   return fetch(`${baseUrl}/user/cart`, {
