@@ -1,5 +1,5 @@
-const baseUrl = process.env.production.REACT_APP_REST_API_URL + '/api';
-// const baseUrl = process.env.REACT_APP_REST_API_URL + '/api';
+// const baseUrl = process.env.production.REACT_APP_REST_API_URL + '/api';
+const baseUrl = process.env.REACT_APP_REST_API_URL + '/api';
 
 const createOrder = (data) => {
   return fetch(`${baseUrl}/orders/new`, {
