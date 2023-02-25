@@ -4,14 +4,14 @@ import { useForm } from 'react-hook-form';
 
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import AuthContext from '../../shared/context/auth-context';
-import { loginService, getProfile } from '../../services/auth-service';
+import { loginService } from '../../services/auth-service';
 import styles from './Login.module.css';
 
 const Login = (props) => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const [error, setError] = useState(null);
   const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'onBlur' || 'onChange'
@@ -19,23 +19,23 @@ const Login = (props) => {
 
   useEffect(() => {
     document.title = props.title;
-    getProfile().then(user => {
-      setChecked(true);
-      if (!user.message) {
-        authCtx.login(user);
-        navigate('/', { replace: true });
-        return;
-      }
-    })
-      .catch(err => {
-        console.log(err);
-        navigate('/login');
-      });
+    // getProfile().then(user => {
+    //   setChecked(true);
+    // if (!user.message) {
+    // authCtx.login(user);
+    // navigate('/', { replace: true });
+    // return;
+    // }
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    //   navigate('/login');
+    // });
 
     return () => document.title = '';
-  }, [authCtx, navigate, props.title]);
+  }, [props.title]);
 
-  if (!checked) { return null; }
+  // if (!checked) { return null; }
 
   const onSubmitHandler = (data, event) => {
     event.preventDefault();

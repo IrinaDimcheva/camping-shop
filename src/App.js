@@ -30,25 +30,25 @@ function App() {
   const navigate = useNavigate();
   const { user, isAdmin, login } = useContext(AuthContext);
   const [cartIsShown, setCartIsShown] = useState(false);
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
 
-  useEffect(() => {
-    getProfile().then(user => {
-      login(user);
-      setChecked(true);
-      if (!user.ok) {
-        navigate('/login');
-        return;
-      }
-    })
-      .catch(err => {
-        console.log(err);
-        navigate('/login');
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   getProfile().then(user => {
+  //     login(user);
+  //     setChecked(true);
+  //     if (!user.ok) {
+  //       navigate('/login');
+  //       return;
+  //     }
+  //   })
+  //     .catch(err => {
+  //       console.log(err);
+  //       navigate('/login');
+  //     });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
-  if (!checked) { return null; }
+  // if (!checked) { return null; }
 
   const showCartHandler = () => {
     setCartIsShown(true);
