@@ -77,7 +77,7 @@ const Register = (props) => {
             {...register('email', {
               required: 'Email is required.',
               pattern: {
-                value: /^[a-z0-9_.-]{4,}@[a-z]{2,5}\.[a-z]{2,4}$/,
+                value: /^[a-z0-9_.-]{4,}@[a-z]{2,5}.[a-z]{2,4}$/,
                 message: 'Email is not valid.'
               }
             })}
