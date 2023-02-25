@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState, Suspense, lazy } from 'react';
-import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
+import { useContext, useState, Suspense, lazy } from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 import Footer from './shared/components/Footer';
 import Header from './shared/components/Header';
@@ -7,7 +7,7 @@ import Cart from './user/components/Cart';
 import AuthContext from './shared/context/auth-context';
 import { AuthContextProvider } from './shared/context/auth-context';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
-import { getProfile } from './services/auth-service';
+// import { getProfile } from './services/auth-service';
 import ErrorBoundary from './shared/components/ErrorBoundary';
 import './App.css';
 
@@ -27,8 +27,8 @@ const Orders = lazy(() => import('./admin/Orders'));
 
 
 function App() {
-  const navigate = useNavigate();
-  const { user, isAdmin, login } = useContext(AuthContext);
+  // const navigate = useNavigate();
+  const { user, isAdmin } = useContext(AuthContext);
   const [cartIsShown, setCartIsShown] = useState(false);
   // const [checked, setChecked] = useState(false);
 
