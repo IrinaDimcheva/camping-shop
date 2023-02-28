@@ -1,4 +1,4 @@
-FROM node:14-alpine AS builder
+FROM node:18.14.2-alpine AS builder
 
 ARG REACT_APP_REST_API_URL
 
