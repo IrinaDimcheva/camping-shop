@@ -1,28 +1,19 @@
+############ Build Stage ############
+
 FROM node:18.14.2-alpine AS builder
 
-ARG REACT_APP_REST_API_URL
-
-# Add a work directory
 WORKDIR /app
 
-COPY package.json .
+ADD . /app
 
 RUN npm install
 
-COPY . /app/
+RUN npm run build
 
-RUN npm build
+############ Serve Stage ############
 
-FROM nginx:alpine
+FROM caddy:alpine
 
-# Set working directory to nginx asset directory
-WORKDIR /usr/share/nginx/html
+COPY --from=builder /app/build /srv
 
-# Remove default nginx static assets
-RUN rm -rf ./*
-
-COPY --from=builder /app/dist .
-
-COPY .nginx/nginx.conf /etc/nginx/conf.d/default.conf
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+COPY Caddyfile /etc/caddy/Caddyfile
