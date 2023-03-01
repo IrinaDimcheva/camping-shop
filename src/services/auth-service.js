@@ -1,5 +1,6 @@
-const baseUrl = process.env.production.REACT_APP_REST_API_URL + '/api';
+// const baseUrl = process.env.production.REACT_APP_REST_API_URL + '/api';
 // const baseUrl = process.env.REACT_APP_REST_API_URL + '/api';
+const baseUrl = 'https://camping-shop-rest-api-production.up.railway.app/api';
 
 const registerService = (data) => {
   return fetch(`${baseUrl}/auth/register`, {
